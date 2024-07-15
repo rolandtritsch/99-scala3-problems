@@ -5,6 +5,12 @@ package ninetynine
 
 object P01 {
   final def last[T](l: List[T]): T = {
-    l.last
+    assert(!l.isEmpty, "!l.isEmpty")
+
+    l match {
+      case e :: Nil  => e
+      case _ :: rest => last(rest)
+      case _         => throw new RuntimeException("Unexpected case")
+    }
   }
 }
