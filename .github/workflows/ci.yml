@@ -9,10 +9,10 @@ env:
 
 jobs:
   run:
-    name: Build and Run
+    name: Build and Test
     strategy:
       matrix:
-        java-version: [8, 11, 17]
+        java-version: [8, 17]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout current branch (full)
