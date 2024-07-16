@@ -1,8 +1,7 @@
 package ninetynine
 
-/**
- * P02 - return the last but one element of the list.
- */
+/** P02 - return the last but one element of the list.
+  */
 
 object P02 {
   final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
@@ -12,9 +11,9 @@ object P02 {
     logger.debug(s"${l}")
 
     l match {
-      case e :: _ :: Nil  => e
-      case _ :: rest => penultimate(rest)
-      case _         => throw new RuntimeException("Unexpected case")
+      case e :: _ :: Nil => e
+      case _ :: rest     => penultimate(rest)
+      case _             => throw new RuntimeException("Unexpected case")
     }
   }
 }
