@@ -12,8 +12,10 @@ The solutions feature ...
 * using [scalafmt][] to format the code
 * using Github Actions to CI/CD the solutions
 * using [scala-logging][] for logging
+* using [scalafix][] for liniting
 
 [mill]: https://mill-build.com
 [munit-scalacheck]: https://scalameta.org/munit/docs/integrations/scalacheck.html
 [scalafmt]: https://scalameta.org/scalafmt
 [scala-logging]: https://github.com/lightbend-labs/scala-logging
+[scalafix]: https://scalacenter.github.io/scalafix
