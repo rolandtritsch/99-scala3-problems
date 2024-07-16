@@ -1,9 +1,11 @@
 package ninetynine
 
-class P00Test extends munit.FunSuite {
-  test("P01") {
-    val result = P01.last(List(1, 2, 3))
-    val expected = 3
-    assertEquals(result, expected)
+import org.scalacheck.Prop._
+
+class P00Test extends munit.ScalaCheckSuite {
+  property("P01") {
+    forAll { (l: List[Int]) =>
+      l.nonEmpty ==> (P01.last(l) == l.last)
+    }
   }
 }
