@@ -11,7 +11,9 @@ The solutions feature ...
 * using [munit-scalacheck][] to test the solutions
 * using [scalafmt][] to format the code
 * using Github Actions to CI/CD the solutions
+* using [scala-logging][] for logging
 
 [mill]: https://mill-build.com
 [munit-scalacheck]: https://scalameta.org/munit/docs/integrations/scalacheck.html
 [scalafmt]: https://scalameta.org/scalafmt
+[scala-logging]: https://github.com/lightbend-labs/scala-logging

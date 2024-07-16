@@ -4,8 +4,11 @@ package ninetynine
   */
 
 object P01 {
+  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+
   final def last[T](l: List[T]): T = {
     assert(!l.isEmpty, "!l.isEmpty")
+    logger.debug(s"${l}")
 
     l match {
       case e :: Nil  => e
