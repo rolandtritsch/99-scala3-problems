@@ -16,6 +16,7 @@ The solutions feature ...
 * using Github Actions to CI/CD the solutions
 * using [scala-logging][] for logging
 * using [scalafix][] for liniting
+* using [scaladocs][] for documentation
 
 [ci-badge]: https://github.com/rolandtritsch/99-scala3-problems/actions/workflows/ci.yml/badge.svg
 [mill]: https://mill-build.com
@@ -23,3 +24,4 @@ The solutions feature ...
 [scalafmt]: https://scalameta.org/scalafmt
 [scala-logging]: https://github.com/lightbend-labs/scala-logging
 [scalafix]: https://scalacenter.github.io/scalafix
+[scaladocs]: https://mill-build.com/mill/Scala_Module_Config.html#_scaladoc_config
