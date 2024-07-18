@@ -5,19 +5,21 @@
 
 To make this work you need to ...
 
-* run `./mill test`
+- run `./mill test`
 
 The solutions feature ...
 
-* solving the problems
-* using [mill][] as a build tool
-* using [munit-scalacheck][] to test the solutions
-* using [scalafmt][] to format the code
-* using Github Actions to CI/CD the solutions
-* using [scala-logging][] for logging
-* using [scalafix][] for liniting
-* using [scaladocs][] for documentation
-* using Github Actions to publish the documentation as/on Github Pages
+- solving the problems
+- using [mill][] as a build tool
+- using [munit-scalacheck][] to test the solutions
+- using [scalafmt][] to format the code
+- using Github Actions to CI/CD the solutions
+- using [scala-logging][] for logging
+- using [scalafix][] for liniting
+- using [scaladocs][] for documentation
+- using Github Actions to publish the [documentation][] as/on Github Pages
+- using [scoverage][] to generate a code-coverage report (and publish
+  it as/on Github Pages)
 
 [ci-badge]: https://github.com/rolandtritsch/99-scala3-problems/actions/workflows/ci.yml/badge.svg
 [mill]: https://mill-build.com
@@ -26,3 +28,5 @@ The solutions feature ...
 [scala-logging]: https://github.com/lightbend-labs/scala-logging
 [scalafix]: https://scalacenter.github.io/scalafix
 [scaladocs]: https://mill-build.com/mill/Scala_Module_Config.html#_scaladoc_config
+[documentation]: https://tedn.life/99-scala3-problems
+[scoverage]: 

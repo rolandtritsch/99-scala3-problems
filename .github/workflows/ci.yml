@@ -40,7 +40,10 @@ jobs:
       - name: Run all tests
         run: ./mill test
 
-      - name: Generate docs
+      - name: Generate html scoverage report
+        run: ./mill scoverage.htmlReport && mv ./out/scoverage/htmlReport.dest ./docs/_docs/scoverage
+
+      - name: Generate html docs
         run: ./mill docJar
 
       - name: Setup pages
