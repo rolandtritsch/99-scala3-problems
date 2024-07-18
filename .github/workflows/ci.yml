@@ -41,7 +41,7 @@ jobs:
         run: ./mill test
 
       - name: Generate docs
-        run: ./mill docs
+        run: ./mill docJar
 
       - name: Setup pages
         if: github.ref == 'refs/heads/trunk'
