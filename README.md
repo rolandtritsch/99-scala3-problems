@@ -17,6 +17,7 @@ The solutions feature ...
 * using [scala-logging][] for logging
 * using [scalafix][] for liniting
 * using [scaladocs][] for documentation
+* using Github Actions to publish the documentation as/on Github Pages
 
 [ci-badge]: https://github.com/rolandtritsch/99-scala3-problems/actions/workflows/ci.yml/badge.svg
 [mill]: https://mill-build.com

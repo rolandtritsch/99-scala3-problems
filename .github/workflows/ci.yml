@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: CI
 
 on:
   pull_request:
@@ -8,12 +8,13 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  run:
-    name: Build and Test
+  setup:
+    name: Setup
     strategy:
       matrix:
         java-version: [8, 17]
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout current branch (full)
         uses: actions/checkout@v3
@@ -28,5 +29,54 @@ jobs:
 
       - uses: coursier/cache-action@v6
 
+  build:
+    name: Build
+    strategy:
+      matrix:
+        java-version: [8, 17]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build
+        run: ./mill compile
+
+  test:
+    name: Test
+    strategy:
+      matrix:
+        java-version: [8, 17]
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Run all tests
         run: ./mill test
+
+  doc:
+    name: Documentation
+    runs-on: ubuntu-latest
+    
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Generate docs
+        run: ./mill docs
+
+      - name: Setup pages
+        if: github.ref == 'refs/heads/trunk'
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        if: github.ref == 'refs/heads/trunk'
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: "./out/docJar.dest/javadoc"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
