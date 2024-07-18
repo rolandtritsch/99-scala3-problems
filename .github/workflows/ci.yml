@@ -8,12 +8,20 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  setup:
-    name: Setup
+  run:
+    name: Build, Test, Deploy
     strategy:
       matrix:
         java-version: [8, 17]
     runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout current branch (full)
@@ -29,41 +37,9 @@ jobs:
 
       - uses: coursier/cache-action@v6
 
-  build:
-    name: Build
-    strategy:
-      matrix:
-        java-version: [8, 17]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Build
-        run: ./mill compile
-
-  test:
-    name: Test
-    strategy:
-      matrix:
-        java-version: [8, 17]
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Run all tests
         run: ./mill test
 
-  doc:
-    name: Documentation
-    runs-on: ubuntu-latest
-    
-    permissions:
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
       - name: Generate docs
         run: ./mill docs
 
