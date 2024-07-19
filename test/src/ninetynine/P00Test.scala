@@ -32,4 +32,11 @@ class P00Test extends munit.ScalaCheckSuite {
       P05.reverse(l) == l.reverse
     }
   }
+
+  test("P06 - palindrome") {
+    assert(P06.isPalindrom("())("))
+    assert(!P06.isPalindrom("()()"))
+    assert(P06.isPalindrom("abba"))
+    assert(P06.isPalindrom("racecar"))
+  }
 }
