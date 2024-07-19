@@ -8,14 +8,20 @@ object P01 {
 
   /** Do a recursive pattern match to find last element of a list.
     *
-    * @param l the list to process
-    * @return the last element of the list l
-    * @throws java.lang.RuntimeException when hitting unexpected case
-    * @note asserts that list is not empty
-    * @author roland@tritsch.email
+    * @param l
+    *   the list to process
+    * @return
+    *   the last element of the list l
+    * @throws java.lang.RuntimeException
+    *   when hitting unexpected case
+    * @note
+    *   asserts that list is not empty
+    * @author
+    *   roland@tritsch.email
     * @version 0.1.0
     * @since 0.1.0
-    * @todo nothing
+    * @todo
+    *   nothing
     */
   final def last[T](l: List[T]): T = {
     assert(!l.isEmpty, "!l.isEmpty")

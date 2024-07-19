@@ -6,7 +6,7 @@ package ninetynine
 object P02 {
   final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
 
-  /** @return the last but one element */
+  /** @return the last but one element of the list l */
   final def penultimate[T](l: List[T]): T = {
     assert(l.size >= 2, "l.size >= 2")
     logger.debug(s"${l}")
