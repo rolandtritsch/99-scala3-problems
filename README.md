@@ -18,15 +18,15 @@ The solutions feature ...
 - using [scalafix][] for liniting
 - using [scaladocs][] for documentation
 - using Github Actions to publish the [documentation][] as/on Github Pages
-- using [scoverage][] to generate a code-coverage report (and publish
-  it as/on Github Pages)
+- using [scoverage][] to generate a code-coverage report
+- using Github Actions to publish the code-coverage report as/on Github Pages
 
 [ci-badge]: https://github.com/rolandtritsch/99-scala3-problems/actions/workflows/ci.yml/badge.svg
+[documentation]: https://tedn.life/99-scala3-problems
 [mill]: https://mill-build.com
 [munit-scalacheck]: https://scalameta.org/munit/docs/integrations/scalacheck.html
-[scalafmt]: https://scalameta.org/scalafmt
 [scala-logging]: https://github.com/lightbend-labs/scala-logging
-[scalafix]: https://scalacenter.github.io/scalafix
 [scaladocs]: https://mill-build.com/mill/Scala_Module_Config.html#_scaladoc_config
-[documentation]: https://tedn.life/99-scala3-problems
-[scoverage]: 
+[scalafix]: https://scalacenter.github.io/scalafix
+[scalafmt]: https://scalameta.org/scalafmt
+[scoverage]: https://mill-build.com/mill/contrib/scoverage.html
