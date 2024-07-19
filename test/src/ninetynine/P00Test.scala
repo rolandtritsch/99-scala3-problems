@@ -20,4 +20,10 @@ class P00Test extends munit.ScalaCheckSuite {
       (n >= 0 && l.size - 1 >= n) ==> (P03.nth(n, l) == l(n))
     }
   }
+
+  property("P04") {
+    forAll { (l: List[Int]) =>
+      P04.size(l) == l.size
+    }
+  }
 }
