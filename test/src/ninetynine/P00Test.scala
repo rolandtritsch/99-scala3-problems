@@ -58,4 +58,8 @@ class P00Test extends munit.ScalaCheckSuite {
       P08.compress(ll).toSet == l.toSet
     }
   }
+
+  test("P09 - pack") {
+    assert(P09.pack(List(3, 1, 2, 3, 2, 3)).toSet == Set(List(1), List(2, 2), List(3, 3, 3)))
+  }
 }
