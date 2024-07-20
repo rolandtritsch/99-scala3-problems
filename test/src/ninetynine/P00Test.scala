@@ -16,8 +16,10 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   property("P03 - nth") {
-    forAll { (n: Int, l: List[Int]) =>
-      (n >= 0 && l.size - 1 >= n) ==> (P03.nth(n, l) == l(n))
+    forAll { (l: List[Int]) =>
+      forAll { (n: Int) =>
+        (n >= 0 && l.size - 1 >= n) ==> (P03.nth(n, l) == l(n))
+      }
     }
   }
 
@@ -61,5 +63,11 @@ class P00Test extends munit.ScalaCheckSuite {
 
   test("P09 - pack") {
     assert(P09.pack(List(3, 1, 2, 3, 2, 3)).toSet == Set(List(1), List(2, 2), List(3, 3, 3)))
+  }
+
+  test("P10 - encode") {
+    val result = P10.encode(List('a', 'c', 'c', 'c', 'b', 'b', 'a', 'b', 'b'))
+    val expected = List((1, 'a'), (3, 'c'), (2, 'b'), (1, 'a'), (2, 'b'))
+    assert(result == expected)
   }
 }
