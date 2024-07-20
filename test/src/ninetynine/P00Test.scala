@@ -49,4 +49,13 @@ class P00Test extends munit.ScalaCheckSuite {
       P07.flatten(l) == l.flatten
     }
   }
+
+  property("P08 - compress") {
+    forAll { (l: List[Int]) =>
+      val ld = l.distinct
+      val ll = ld ++ ld
+
+      P08.compress(ll).toSet == l.toSet
+    }
+  }
 }
