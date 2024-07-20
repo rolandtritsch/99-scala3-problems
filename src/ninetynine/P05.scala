@@ -11,7 +11,7 @@ object P05 {
     logger.debug("${l}")
 
     l match {
-      case Nil  => List()
+      case Nil       => List()
       case e :: Nil  => List(e)
       case e :: rest => reverse(rest) ++ List(e)
     }

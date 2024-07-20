@@ -39,4 +39,14 @@ class P00Test extends munit.ScalaCheckSuite {
     assert(P06.isPalindrom("abba"))
     assert(P06.isPalindrom("racecar"))
   }
+
+  property("P07 - nested") {
+    assert(P07.flatten(List(List(1, 2), 3)) == List(1, 2, 3))
+    assert(P07.flatten(List(List(1, 2), List(3, 4))) == List(1, 2, 3, 4))
+    assert(P07.flatten(List(List(1, List(2)), List(3, 4))) == List(1, 2, 3, 4))
+
+    forAll { (l: List[List[Int]]) =>
+      P07.flatten(l) == l.flatten
+    }
+  }
 }
