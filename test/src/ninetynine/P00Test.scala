@@ -115,4 +115,12 @@ class P00Test extends munit.ScalaCheckSuite {
     val expected = List((6, 'a'), (1, 'b'), (2, 'c'), (1, 'd'), (4, 'e'))
     assert(result == expected)
   }
+
+  property("P14 - duplicate") {
+    assert(P14.duplicate(List('a', 'b', 'c', 'c', 'd')) == List('a', 'a', 'b', 'b', 'c', 'c', 'c', 'c', 'd', 'd'))
+
+    forAll { (l: List[Int]) =>
+      (!l.isEmpty) ==> (P14.duplicate(l) == l.foldLeft(List())((ll, e) => ll ++ List(e) ++ List(e)))
+    }
+  }
 }
