@@ -1,6 +1,6 @@
 package ninetynine
 
-/** P07 - flatten a (potentially nested) list of lists
+/** P07 - flatten a (potentially nested) list of lists.
   */
 
 object P07 {

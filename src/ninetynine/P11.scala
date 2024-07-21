@@ -1,6 +1,6 @@
 package ninetynine
 
-/** P11 - modified run-length encoding
+/** P11 - modified run-length encoding.
   */
 
 object P11 {

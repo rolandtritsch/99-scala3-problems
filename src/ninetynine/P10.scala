@@ -1,6 +1,6 @@
 package ninetynine
 
-/** P10 - run-length encoding of a list
+/** P10 - run-length encoding of a list.
   */
 
 object P10 {

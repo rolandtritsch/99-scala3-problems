@@ -1,6 +1,6 @@
 package ninetynine
 
-/** P08 - remove the duplicates from a list
+/** P08 - remove the duplicates from a list.
   */
 
 object P08 {

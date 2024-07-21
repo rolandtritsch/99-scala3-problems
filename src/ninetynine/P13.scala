@@ -1,6 +1,6 @@
 package ninetynine
 
-/** P13 - Run-length encoding of a list (direct (recursive) solution)
+/** P13 - Run-length encoding of a list (direct (recursive) solution).
   */
 
 object P13 {

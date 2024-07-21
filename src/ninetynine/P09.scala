@@ -1,6 +1,6 @@
 package ninetynine
 
-/** P09 - pack dublicates into sublists
+/** P09 - pack dublicates into sublists.
   */
 
 object P09 {

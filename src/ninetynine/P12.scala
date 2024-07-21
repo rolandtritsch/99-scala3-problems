@@ -1,12 +1,12 @@
 package ninetynine
 
-/** P12 - decode a run-length encoded list
+/** P12 - decode a run-length encoded list.
   */
 
 object P12 {
   final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
 
-  /** @return run-length decoded list */
+ /** @return run-length decoded list */
   final def decode(l: List[(Int, Any)]): List[Any] = {
     assert(!l.isEmpty, "!l.empty")
     logger.debug(s"${l}")
