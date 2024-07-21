@@ -11,13 +11,17 @@ object P10 {
     assert(!l.isEmpty, "!l.empty")
     logger.debug(s"${l}")
 
-    def encode(l: List[Any], el: List[(Int, Any)], ec: (Int, Any)): List[(Int, Any)] = {
+    def encode(
+        l: List[Any],
+        el: List[(Int, Any)],
+        ec: (Int, Any)
+    ): List[(Int, Any)] = {
       logger.debug(s"${l}")
 
       l match {
-        case Nil => el ++ List(ec)
+        case Nil                     => el ++ List(ec)
         case e :: rest if e == ec._2 => encode(rest, el, (ec._1 + 1, ec._2))
-        case e :: rest => encode(rest, el ++ List(ec), (1, e))
+        case e :: rest               => encode(rest, el ++ List(ec), (1, e))
       }
     }
 
