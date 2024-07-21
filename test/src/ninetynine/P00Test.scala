@@ -109,4 +109,10 @@ class P00Test extends munit.ScalaCheckSuite {
       (!ll.isEmpty) ==> (P12.decode(P10.encode(ll)) == ll)
     }
   }
+
+  test("P13 - encode") {
+    val result = P13.encode(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'))
+    val expected = List((6, 'a'), (1, 'b'), (2, 'c'), (1, 'd'), (4, 'e'))
+    assert(result == expected)
+  }
 }
