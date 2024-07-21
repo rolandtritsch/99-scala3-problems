@@ -70,4 +70,10 @@ class P00Test extends munit.ScalaCheckSuite {
     val expected = List((1, 'a'), (3, 'c'), (2, 'b'), (1, 'a'), (2, 'b'))
     assert(result == expected)
   }
+
+  test("P11 - encode") {
+    val result = P11.encode(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'))
+    val expected = List((4, 'a'), 'b', (2, 'c'), (2, 'a'), 'd', (4, 'e'))
+    assert(result == expected)
+  }
 }
