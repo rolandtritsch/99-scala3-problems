@@ -4,18 +4,24 @@ import org.scalacheck.Prop._
 
 class P00Test extends munit.ScalaCheckSuite {
   property("P01 - last") {
+    assert(P01.last(List("first", "last")) == "last")
+
     forAll { (l: List[Int]) =>
       l.nonEmpty ==> (P01.last(l) == l.last)
     }
   }
 
   property("P02 - penultimate") {
+    assert(P02.penultimate(List("first", "middle", "last")) == "middle")
+
     forAll { (l: List[Int]) =>
       (l.size >= 2) ==> (P02.penultimate(l) == l.take(l.size - 1).last)
     }
   }
 
   property("P03 - nth") {
+    assert(P03.nth(2, List("first", "middle", "last")) == "last")
+
     forAll { (l: List[Int]) =>
       forAll { (n: Int) =>
         (n >= 0 && l.size - 1 >= n) ==> (P03.nth(n, l) == l(n))
@@ -24,28 +30,37 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   property("P04 - size") {
+    assert(P04.size(List("first", "middle", "last")) == 3)
+
     forAll { (l: List[Int]) =>
       P04.size(l) == l.size
     }
   }
 
   property("P05 - reverse") {
+    val original = List("This", "is", "a", "test")
+    val reverse = List("test", "a", "is", "This")
+
+    assert(P05.reverse(original) == reverse)
+    assert(P05.reverse(reverse) == original)
+
     forAll { (l: List[Int]) =>
       P05.reverse(l) == l.reverse
     }
   }
 
   test("P06 - palindrome") {
-    assert(P06.isPalindrom("())("))
-    assert(!P06.isPalindrom("()()"))
     assert(P06.isPalindrom("abba"))
     assert(P06.isPalindrom("racecar"))
+    assert(P06.isPalindrom("())("))
+    assert(!P06.isPalindrom("()()"))
   }
 
   property("P07 - nested") {
     assert(P07.flatten(List(List(1, 2), 3)) == List(1, 2, 3))
     assert(P07.flatten(List(List(1, 2), List(3, 4))) == List(1, 2, 3, 4))
     assert(P07.flatten(List(List(1, List(2)), List(3, 4))) == List(1, 2, 3, 4))
+    assert(P07.flatten(List(List(1, 1), 2, List(3, List(5, 8)))) == List(1, 1, 2, 3, 5, 8))
 
     forAll { (l: List[List[Int]]) =>
       P07.flatten(l) == l.flatten
@@ -53,6 +68,10 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   property("P08 - compress") {
+    val result = P08.compress(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'))
+    val expected = List('a', 'b', 'c', 'd', 'e')
+    assert(result.toSet == expected.toSet)
+
     forAll { (l: List[Int]) =>
       val ld = l.distinct
       val ll = ld ++ ld
@@ -62,18 +81,32 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   test("P09 - pack") {
+    assert(P09.pack(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')) == List(List('a', 'a', 'a', 'a', 'a', 'a'), List('b'), List('c', 'c'), List('d'), List('e', 'e', 'e', 'e')))
     assert(P09.pack(List(3, 1, 2, 3, 2, 3)).toSet == Set(List(1), List(2, 2), List(3, 3, 3)))
   }
 
   test("P10 - encode") {
-    val result = P10.encode(List('a', 'c', 'c', 'c', 'b', 'b', 'a', 'b', 'b'))
-    val expected = List((1, 'a'), (3, 'c'), (2, 'b'), (1, 'a'), (2, 'b'))
-    assert(result == expected)
+    assert(P10.encode(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')) == List((4, 'a'), (1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e')))
+
+    assert(P10.encode(List('a', 'c', 'c', 'c', 'b', 'b', 'a', 'b', 'b')) == List((1, 'a'), (3, 'c'), (2, 'b'), (1, 'a'), (2, 'b')))
   }
 
   test("P11 - encode") {
-    val result = P11.encode(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'))
-    val expected = List((4, 'a'), 'b', (2, 'c'), (2, 'a'), 'd', (4, 'e'))
+    assert(P11.encode(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')) == List((4, 'a'), 'b', (2, 'c'), (2, 'a'), 'd', (4, 'e')))
+
+    assert(P11.encode(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')) == List((4, 'a'), 'b', (2, 'c'), (2, 'a'), 'd', (4, 'e')))
+  }
+
+  property("P12 - decode") {
+    val result = P12.decode(List((4, 'a'), (1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e')))
+    val expected = List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')
     assert(result == expected)
+
+    forAll { (l: List[Int]) =>
+      val ld = l.distinct
+      val ll = ld ++ ld
+
+      (!ll.isEmpty) ==> (P12.decode(P10.encode(ll)) == ll)
+    }
   }
 }
