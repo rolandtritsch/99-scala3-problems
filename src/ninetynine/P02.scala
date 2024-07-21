@@ -7,7 +7,7 @@ object P02 {
   final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
 
   /** @return the last but one element of the list l */
-  final def penultimate[T](l: List[T]): T = {
+  final def penultimate[A](l: List[A]): A = {
     assert(l.size >= 2, "l.size >= 2")
     logger.debug(s"${l}")
 

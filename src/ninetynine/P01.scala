@@ -23,7 +23,7 @@ object P01 {
     * @todo
     *   nothing
     */
-  final def last[T](l: List[T]): T = {
+  final def last[A](l: List[A]): A = {
     assert(!l.isEmpty, "!l.isEmpty")
     logger.debug(s"${l}")
 
@@ -35,5 +35,5 @@ object P01 {
   }
 
   /** @deprecated("this method is deprecated", "0.1.0") */
-  final def last_[T](l: List[T]): T = l.last
+  final def last_[A](l: List[A]): A = l.last
 }
