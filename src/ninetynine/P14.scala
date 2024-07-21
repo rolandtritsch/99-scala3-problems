@@ -10,6 +10,6 @@ object P14 {
     assert(!l.isEmpty, "!l.isEmpty")
     logger.debug(s"${l}")
 
-    (for(e <- l) yield List(e, e)).flatten
+    (for (e <- l) yield List(e, e)).flatten
   }
 }
