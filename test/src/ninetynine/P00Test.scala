@@ -131,4 +131,12 @@ class P00Test extends munit.ScalaCheckSuite {
       (!l.isEmpty) ==> (P15.duplicate(3, l) == l.foldLeft(List())((ll, e) => ll ++ List(e) ++ List(e) ++ List(e)))
     }
   }
+
+  property("P16 - drop") {
+    assert(P16.drop(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k')) == List('a', 'b', 'd', 'e', 'g', 'h', 'j', 'k'))
+
+    forAll { (l: List[Int]) =>
+      P16.drop(3, l) == l.zipWithIndex.foldLeft(List())((ll, e) => if ((e._2+1)%3 == 0) ll else ll ++ List(e._1))
+    }
+  }
 }
