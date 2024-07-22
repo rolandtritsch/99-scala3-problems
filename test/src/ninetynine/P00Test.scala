@@ -139,4 +139,16 @@ class P00Test extends munit.ScalaCheckSuite {
       P16.drop(3, l) == l.zipWithIndex.foldLeft(List[Int]())((ll, e) => if ((e._2+1)%3 == 0) ll else ll ++ List(e._1))
     }
   }
+
+  property("P17 - split") {
+    val result = P17.split(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    val expected = (List('a', 'b', 'c'), List('d', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    assert(result == expected)
+
+    forAll { (l: List[Int]) =>
+      forAll { (n: Int) =>
+        (l.size - 1 >= n) ==> (P17.split(n, l) == (l.take(n), l.drop(n)))
+      }
+    }
+  }
 }
