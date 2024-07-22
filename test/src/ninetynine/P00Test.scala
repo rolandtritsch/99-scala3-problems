@@ -169,8 +169,18 @@ class P00Test extends munit.ScalaCheckSuite {
 
     forAll { (l: List[Int]) =>
       forAll { (n: Int) =>
-        (l.size - 1 >= n) ==> (P17.split(n, l) == (l.take(n), l.drop(n)))
+        (l.size - 1 >= n) ==> (P17.split(n, l) == l.splitAt(n))
       }
+    }
+  }
+
+  property("P18 - slice") {
+    val result = P18.slice(3, 7, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    val expected = List('d', 'e', 'f', 'g')
+    assert(result == expected)
+
+    forAll { (from: Int, to: Int, l: List[Int]) =>
+      (from >= 0 && to >= 0 && to >= from) ==> (P18.slice(from, to, l) == l.slice(from, to))
     }
   }
 }
