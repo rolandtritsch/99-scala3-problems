@@ -7,7 +7,7 @@ object P05 {
   final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
 
   /** @return the reverse of the list l */
-  final def reverse(l: List[Any]): List[Any] = {
+  final def reverse[A](l: List[A]): List[A] = {
     logger.debug("${l}")
 
     l match {

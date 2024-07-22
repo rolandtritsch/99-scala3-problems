@@ -11,6 +11,11 @@ object P17 {
     assert(l.size - 1 >= n, "l.size - 1 >= n")
     logger.debug(s"${l}")
 
-    l.zipWithIndex.foldLeft(List[A](), List[A]()){(ll, e) => if (e._2 >= n) (ll._1, ll._2 ++ List(e._1)) else (ll._1 ++ List(e._1), ll._2)}
+    l.zipWithIndex.foldLeft(List[A](), List[A]()) { (ll, e) =>
+      {
+        if (e._2 >= n) (ll._1, ll._2 ++ List(e._1))
+        else (ll._1 ++ List(e._1), ll._2)
+      }
+    }
   }
 }

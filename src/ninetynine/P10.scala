@@ -7,15 +7,14 @@ object P10 {
   final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
 
   /** @return run-length encoded list */
-  final def encode(l: List[Any]): List[(Int, Any)] = {
-    assert(!l.isEmpty, "!l.empty")
+  final def encode[A](l: List[A]): List[(Int, A)] = {
     logger.debug(s"${l}")
 
     def encode(
-        l: List[Any],
-        el: List[(Int, Any)],
-        ec: (Int, Any)
-    ): List[(Int, Any)] = {
+        l: List[A],
+        el: List[(Int, A)],
+        ec: (Int, A)
+    ): List[(Int, A)] = {
       logger.debug(s"${l}")
 
       l match {
@@ -25,6 +24,9 @@ object P10 {
       }
     }
 
-    encode(l.tail, List(), (1, l.head))
+    l match {
+      case Nil => List()
+      case _   => encode(l.tail, List(), (1, l.head))
+    }
   }
 }

@@ -7,10 +7,9 @@ object P08 {
   final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
 
   /** @return l with no duplicates */
-  final def compress(l: List[Any]): List[Any] = {
+  final def compress[A](l: List[A]): List[A] = {
     logger.debug(s"${l}")
 
-    // l.distinct
     l.toSet.toList
   }
 }

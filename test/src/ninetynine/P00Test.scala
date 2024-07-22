@@ -1,18 +1,23 @@
 package ninetynine
 
 import org.scalacheck.Prop._
+import scala.language.experimental
 
 class P00Test extends munit.ScalaCheckSuite {
   property("P01 - last") {
-    assert(P01.last(List("first", "last")) == "last")
+    val result = P01.last(List("first", "last"))
+    val expected = "last"
+    assert(result == expected)
 
     forAll { (l: List[Int]) =>
-      l.nonEmpty ==> (P01.last(l) == l.last)
+      (l.nonEmpty) ==> (P01.last(l) == l.last)
     }
   }
 
   property("P02 - penultimate") {
-    assert(P02.penultimate(List("first", "middle", "last")) == "middle")
+    val result = P02.penultimate(List("first", "middle", "last"))
+    val expected = "middle"
+    assert(result == expected)
 
     forAll { (l: List[Int]) =>
       (l.size >= 2) ==> (P02.penultimate(l) == l.take(l.size - 1).last)
@@ -20,7 +25,9 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   property("P03 - nth") {
-    assert(P03.nth(2, List("first", "middle", "last")) == "last")
+    val result = P03.nth(2, List("first", "middle", "last"))
+    val expected = "last"
+    assert(result == expected)
 
     forAll { (l: List[Int]) =>
       forAll { (n: Int) =>
@@ -30,7 +37,9 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   property("P04 - size") {
-    assert(P04.size(List("first", "middle", "last")) == 3)
+    val result = P04.size(List("first", "middle", "last"))
+    val expected = 3
+    assert(result == expected)
 
     forAll { (l: List[Int]) =>
       P04.size(l) == l.size
@@ -106,7 +115,7 @@ class P00Test extends munit.ScalaCheckSuite {
       val ld = l.distinct
       val ll = ld ++ ld
 
-      (!ll.isEmpty) ==> (P12.decode(P10.encode(ll)) == ll)
+      P12.decode(P10.encode(ll)) == ll
     }
   }
 
@@ -117,26 +126,39 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   property("P14 - duplicate") {
-    assert(P14.duplicate(List('a', 'b', 'c', 'c', 'd')) == List('a', 'a', 'b', 'b', 'c', 'c', 'c', 'c', 'd', 'd'))
+    val result = P14.duplicate(List('a', 'b', 'c', 'c', 'd'))
+    val expected = List('a', 'a', 'b', 'b', 'c', 'c', 'c', 'c', 'd', 'd')
+    assert(result == expected)
 
     forAll { (l: List[Int]) =>
-      (!l.isEmpty) ==> (P14.duplicate(l) == l.foldLeft(List[Int]())((ll, e) => ll ++ List(e) ++ List(e)))
+      P14.duplicate(l) == l.foldLeft(List[Int]()) { (ll, e) => {
+        ll ++ List(e) ++ List(e)
+      }}
     }
   }
 
   property("P15 - duplicate") {
-    assert(P15.duplicate(2, List('a', 'b', 'c', 'c', 'd')) == List('a', 'a', 'b', 'b', 'c', 'c', 'c', 'c', 'd', 'd'))
+    val result = P15.duplicate(2, List('a', 'b', 'c', 'c', 'd'))
+    val expected = List('a', 'a', 'b', 'b', 'c', 'c', 'c', 'c', 'd', 'd')
+    assert(result == expected)
 
     forAll { (l: List[Int]) =>
-      (!l.isEmpty) ==> (P15.duplicate(3, l) == l.foldLeft(List[Int]())((ll, e) => ll ++ List(e) ++ List(e) ++ List(e)))
+      P15.duplicate(3, l) == l.foldLeft(List[Int]()) { (ll, e) => {
+        ll ++ List(e) ++ List(e) ++ List(e)
+      }}
     }
   }
 
   property("P16 - drop") {
-    assert(P16.drop(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k')) == List('a', 'b', 'd', 'e', 'g', 'h', 'j', 'k'))
+    val result = P16.drop(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    val expected = List('a', 'b', 'd', 'e', 'g', 'h', 'j', 'k')
+    assert(result == expected)
 
     forAll { (l: List[Int]) =>
-      P16.drop(3, l) == l.zipWithIndex.foldLeft(List[Int]())((ll, e) => if ((e._2+1)%3 == 0) ll else ll ++ List(e._1))
+      P16.drop(3, l) == l.zipWithIndex.foldLeft(List[Int]()) { (ll, e) => {
+        if ((e._2+1)%3 == 0) ll
+        else ll ++ List(e._1)
+      }}
     }
   }
 

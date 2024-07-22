@@ -6,13 +6,13 @@ package ninetynine
 object P07 {
   final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
 
-  /** @return flattened list nested */
-  final def flatten(nested: Any): List[Any] = {
-    logger.debug(s"${nested}")
+  /** @return flattened list l */
+  final def flatten(l: Any): List[Any] = {
+    logger.debug(s"${l}")
 
-    nested match {
+    l match {
       case Nil          => Nil
-      case head :: tail => flatten(head) ::: flatten(tail)
+      case head :: tail => flatten(head) ++ flatten(tail)
       case e            => List(e)
     }
   }

@@ -6,8 +6,7 @@ package ninetynine
 object P15 {
   final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
 
-  final def duplicate(n: Int, l: List[Any]): List[Any] = {
-    assert(!l.isEmpty, "!l.isEmpty")
+  final def duplicate[A](n: Int, l: List[A]): List[A] = {
     logger.debug(s"${l}")
 
     (for (e <- l) yield List.fill(n)(e)).flatten
