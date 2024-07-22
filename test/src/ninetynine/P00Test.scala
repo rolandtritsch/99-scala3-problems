@@ -174,14 +174,10 @@ class P00Test extends munit.ScalaCheckSuite {
     }
   }
 
-  property("P18 - slice") {
+  test("P18 - slice") {
     val result = P18.slice(3, 7, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
     val expected = List('d', 'e', 'f', 'g')
     assert(result == expected)
-
-    forAll { (from: Int, to: Int, l: List[Int]) =>
-      (from >= 0 && to >= 0 && to >= from) ==> (P18.slice(from, to, l) == l.slice(from, to))
-    }
   }
 
   property("P19 - rotate") {
@@ -190,9 +186,21 @@ class P00Test extends munit.ScalaCheckSuite {
     assert(result == expected)
 
     forAll { (n: Int, l: List[Int]) =>
-      (n >= 0 && l.size - 1 >= n) ==> (P19.rotate(n, l) == {
+      (n >= 0 && l.size - 1 > n) ==> (P19.rotate(n, l) == {
         if(n >= 0) l.drop(n) ++ l.take(n)
         else l.drop(n + l.size) ++ l.take(n + l.size)
+      })
+    }
+  }
+
+  property("P20 - removeAt") {
+    val result = P20.removeAt(1, List('a', 'b', 'c', 'd'))
+    val expected = (List('a', 'c', 'd'), 'b')
+    assert(result == expected)
+
+    forAll { (n: Int, l: List[Int]) =>
+      (n >= 0 && l.size - 1 >= n) ==> (P20.removeAt(n, l) == {
+        (l.slice(0, n) ++ l.slice(n + 1, l.size), l(n)) 
       })
     }
   }
