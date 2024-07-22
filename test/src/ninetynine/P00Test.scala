@@ -204,4 +204,10 @@ class P00Test extends munit.ScalaCheckSuite {
       })
     }
   }
+
+  test("P21 - insertAt") {
+    val result = P21.insertAt('x', 1, List('a', 'b', 'c', 'd'))
+    val expected = List('a', 'x', 'b', 'c', 'd')
+    assert(result == expected)
+  }
 }
