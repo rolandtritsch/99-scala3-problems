@@ -11,6 +11,8 @@ object P22 {
     assert(to >= from, "to >= from")
     logger.debug(s"${from} - ${to}")
 
-    Range(from, to + 1).toList
+    List.fill(to - from)(1).foldLeft(List(from)) { (a, e) => {
+      (a.head + e) :: a
+    }}.reverse
   }
 }
