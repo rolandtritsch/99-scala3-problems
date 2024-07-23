@@ -232,4 +232,9 @@ class P00Test extends munit.ScalaCheckSuite {
     val result = P23.randomSelect(3, List('a', 'b', 'c', 'd', 'f', 'g', 'h'))
     assert(result.size == 3)
   }
+
+  test("P24 - lotto") {
+    val result = P24.lotto(6, 49)
+    assert(result.size == 6)
+  }
 }
