@@ -1,9 +1,11 @@
 package ninetynine
 
 import org.scalacheck.Prop._
-import scala.language.experimental
+import scala.util.Random
 
 class P00Test extends munit.ScalaCheckSuite {
+  val ignore = new munit.Tag("ignore")
+
   property("P01 - last") {
     val result = P01.last(List("first", "last"))
     val expected = "last"
@@ -209,5 +211,20 @@ class P00Test extends munit.ScalaCheckSuite {
     val result = P21.insertAt('x', 1, List('a', 'b', 'c', 'd'))
     val expected = List('a', 'x', 'b', 'c', 'd')
     assert(result == expected)
+  }
+
+  property("P22 - range".tag(ignore)) {
+  // property("P22 - range") {
+    val result = P22.range(4, 9)
+    val expected = List(4, 5, 6, 7, 8, 9)
+    assert(result == expected)
+
+    forAll { (f: Short) =>
+      val from = f.toInt
+      val to = Random.between(from, from + 100)
+      P22.range(from, to) == {
+        Range(from, to + 1).toList
+      }
+    }
   }
 }
