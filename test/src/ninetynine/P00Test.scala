@@ -9,7 +9,7 @@ class P00Test extends munit.ScalaCheckSuite {
   property("P01 - last") {
     val result = P01.last(List("first", "last"))
     val expected = "last"
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
       (l.nonEmpty) ==> (P01.last(l) == l.last)
@@ -19,7 +19,7 @@ class P00Test extends munit.ScalaCheckSuite {
   property("P02 - penultimate") {
     val result = P02.penultimate(List("first", "middle", "last"))
     val expected = "middle"
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
       (l.size >= 2) ==> (P02.penultimate(l) == l.take(l.size - 1).last)
@@ -29,7 +29,7 @@ class P00Test extends munit.ScalaCheckSuite {
   property("P03 - nth") {
     val result = P03.nth(2, List("first", "middle", "last"))
     val expected = "last"
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
       forAll { (n: Int) =>
@@ -41,7 +41,7 @@ class P00Test extends munit.ScalaCheckSuite {
   property("P04 - size") {
     val result = P04.size(List("first", "middle", "last"))
     val expected = 3
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
       P04.size(l) == l.size
@@ -111,7 +111,7 @@ class P00Test extends munit.ScalaCheckSuite {
   property("P12 - decode") {
     val result = P12.decode(List((4, 'a'), (1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e')))
     val expected = List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
       val ld = l.distinct
@@ -124,13 +124,13 @@ class P00Test extends munit.ScalaCheckSuite {
   test("P13 - encode") {
     val result = P13.encode(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'))
     val expected = List((6, 'a'), (1, 'b'), (2, 'c'), (1, 'd'), (4, 'e'))
-    assert(result == expected)
+    assertEquals(result, expected)
   }
 
   property("P14 - duplicate") {
     val result = P14.duplicate(List('a', 'b', 'c', 'c', 'd'))
     val expected = List('a', 'a', 'b', 'b', 'c', 'c', 'c', 'c', 'd', 'd')
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
       P14.duplicate(l) == l.foldLeft(List[Int]()) { (ll, e) => {
@@ -142,7 +142,7 @@ class P00Test extends munit.ScalaCheckSuite {
   property("P15 - duplicate") {
     val result = P15.duplicate(2, List('a', 'b', 'c', 'c', 'd'))
     val expected = List('a', 'a', 'b', 'b', 'c', 'c', 'c', 'c', 'd', 'd')
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
       P15.duplicate(3, l) == l.foldLeft(List[Int]()) { (ll, e) => {
@@ -154,7 +154,7 @@ class P00Test extends munit.ScalaCheckSuite {
   property("P16 - drop") {
     val result = P16.drop(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
     val expected = List('a', 'b', 'd', 'e', 'g', 'h', 'j', 'k')
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
       P16.drop(3, l) == l.zipWithIndex.foldLeft(List[Int]()) { (ll, e) => {
@@ -167,7 +167,7 @@ class P00Test extends munit.ScalaCheckSuite {
   property("P17 - split") {
     val result = P17.split(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
     val expected = (List('a', 'b', 'c'), List('d', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
       forAll { (n: Int) =>
@@ -179,13 +179,13 @@ class P00Test extends munit.ScalaCheckSuite {
   test("P18 - slice") {
     val result = P18.slice(3, 7, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
     val expected = List('d', 'e', 'f', 'g')
-    assert(result == expected)
+    assertEquals(result, expected)
   }
 
   property("P19 - rotate") {
     val result = P19.rotate(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
     val expected = List('d', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'a', 'b', 'c')
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (n: Int, l: List[Int]) =>
       (n >= 0 && l.size - 1 > n) ==> (P19.rotate(n, l) == {
@@ -198,7 +198,7 @@ class P00Test extends munit.ScalaCheckSuite {
   property("P20 - removeAt") {
     val result = P20.removeAt(1, List('a', 'b', 'c', 'd'))
     val expected = (List('a', 'c', 'd'), 'b')
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (n: Int, l: List[Int]) =>
       (n >= 0 && l.size - 1 >= n) ==> (P20.removeAt(n, l) == {
@@ -210,14 +210,14 @@ class P00Test extends munit.ScalaCheckSuite {
   test("P21 - insertAt") {
     val result = P21.insertAt('x', 1, List('a', 'b', 'c', 'd'))
     val expected = List('a', 'x', 'b', 'c', 'd')
-    assert(result == expected)
+    assertEquals(result, expected)
   }
 
   // property("P22 - range".tag(ignore)) {
   property("P22 - range") {
     val result = P22.range(4, 9)
     val expected = List(4, 5, 6, 7, 8, 9)
-    assert(result == expected)
+    assertEquals(result, expected)
 
     forAll { (f: Short) =>
       val from = f.toInt
