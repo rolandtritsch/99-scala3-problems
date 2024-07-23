@@ -213,8 +213,8 @@ class P00Test extends munit.ScalaCheckSuite {
     assert(result == expected)
   }
 
-  property("P22 - range".tag(ignore)) {
-  // property("P22 - range") {
+  // property("P22 - range".tag(ignore)) {
+  property("P22 - range") {
     val result = P22.range(4, 9)
     val expected = List(4, 5, 6, 7, 8, 9)
     assert(result == expected)
@@ -226,5 +226,10 @@ class P00Test extends munit.ScalaCheckSuite {
         Range(from, to + 1).toList
       }
     }
+  }
+
+  test("P23 - randomSelect") {
+    val result = P23.randomSelect(3, List('a', 'b', 'c', 'd', 'f', 'g', 'h'))
+    assert(result.size == 3)
   }
 }
