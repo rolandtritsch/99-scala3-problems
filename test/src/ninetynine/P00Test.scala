@@ -237,4 +237,14 @@ class P00Test extends munit.ScalaCheckSuite {
     val result = P24.lotto(6, 49)
     assert(result.size == 6)
   }
+
+  property("P25 - randomPermute") {
+    val l = List('a', 'b', 'c', 'd', 'e', 'f')
+    val result = P25.randomPermute(l)
+    assertEquals(result.size, l.size)
+
+    forAll { (l: List[Int]) =>
+      P25.randomPermute(l).size == l.size
+    }
+  }
 }
