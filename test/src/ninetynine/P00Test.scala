@@ -247,4 +247,9 @@ class P00Test extends munit.ScalaCheckSuite {
       P25.randomPermute(l).size == l.size
     }
   }
+
+  test("P26 - combinations") {
+    val result = P26.combinations(3, List('a', 'b', 'c', 'd', 'e'))
+    assert(result.size == 60)
+  }
 }
