@@ -252,4 +252,15 @@ class P00Test extends munit.ScalaCheckSuite {
     val result = P26.combinations(3, List('a', 'b', 'c', 'd', 'e'))
     assert(result.size == 60)
   }
+
+  test("P27 - group3") {
+    val result = P27.group3(List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida"))
+    assert(result.flatten.flatten.flatten.size == 18144)
+  }
+
+  test("P27 - group") {
+    val result = P27.group(List(2, 2, 5), List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida"))
+    assert(result.flatten.flatten.flatten.size == 13063680
+)
+  }
 }
