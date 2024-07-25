@@ -1,7 +1,6 @@
-# 99 Scala Problems (and Solutions)
+# [99][] Scala Problems (and Solutions)
 
 ![ci-badge][]
-
 
 To make this work you need to ...
 
@@ -31,3 +30,4 @@ The solutions feature ...
 [scalafix]: https://scalacenter.github.io/scalafix
 [scalafmt]: https://scalameta.org/scalafmt
 [scoverage]: https://mill-build.com/mill/contrib/scoverage.html
+[99]: https://aperiodic.net/pip/scala/s-99
