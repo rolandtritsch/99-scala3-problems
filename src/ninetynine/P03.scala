@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P03 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the Nth element of the list l */
   final def nth[A](n: Int, l: List[A]): A = {

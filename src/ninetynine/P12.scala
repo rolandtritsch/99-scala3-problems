@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P12 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return run-length decoded list */
   final def decode[A](l: List[(Int, A)]): List[A] = {

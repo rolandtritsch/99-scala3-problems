@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P14 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   final def duplicate[A](l: List[A]): List[A] = {
     logger.debug(s"${l}")

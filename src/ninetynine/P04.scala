@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P04 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the size of the list l */
   final def size(l: List[Any]): Int = {

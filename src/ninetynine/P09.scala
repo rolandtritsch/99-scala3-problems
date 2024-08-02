@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P09 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return a list of lists (packing dups into lists) */
   final def pack[A](l: List[A]): List[List[A]] = {

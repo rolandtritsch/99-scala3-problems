@@ -5,7 +5,7 @@ package ninetynine
   */
 
 object P26 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** Iterate over the list and remove one element at a time.  Do this K
     * times recursivly and keep track on the elements that you take

@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P21 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return a new list with e inserted at position n into l */
   final def insertAt[A](e: A, n: Int, l: List[A]): List[A] = {

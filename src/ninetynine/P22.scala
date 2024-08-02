@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P22 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return a list with all integers from/to */
   final def range(from: Int, to: Int): List[Int] = {

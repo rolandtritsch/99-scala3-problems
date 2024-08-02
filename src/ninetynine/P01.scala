@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P01 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** Do a recursive pattern match to find last element of a list.
     *

@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P16 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the list l without every Nth element */
   final def drop[A](n: Int, l: List[A]): List[A] = {

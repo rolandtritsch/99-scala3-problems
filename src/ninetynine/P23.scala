@@ -7,7 +7,7 @@ import scala.util.Random
   */
 
 object P23 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return n randomly selected elements from l */ 
   final def randomSelect[A](n: Int, l: List[A]): List[A] = {

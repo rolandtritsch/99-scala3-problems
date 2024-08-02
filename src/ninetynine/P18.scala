@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P18 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the slice from/to of list l */
   final def slice[A](from: Int, to: Int, l: List[A]): List[A] = {

@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P27 {
-  final val logger = com.typesafe.scalalogging.Logger(getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return 3 disjoint subgroups of 1, 2 and 3 elements */
   def group3[A](l: List[A]): List[List[List[A]]] = {
