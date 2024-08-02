@@ -261,6 +261,14 @@ class P00Test extends munit.ScalaCheckSuite {
   test("P27 - group") {
     val result = P27.group(List(2, 2, 5), List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida"))
     assert(result.flatten.flatten.flatten.size == 13063680
-)
+    )
+  }
+
+  test("P28 - lsort") {
+    val input = List(List('a', 'b', 'c'), List('d', 'e'), List('f', 'g', 'h'), List('d', 'e'), List('i', 'j', 'k', 'l'), List('m', 'n'), List('o'))
+    val result = P28.lsort(input)
+    val expected = List(List('o'), List('d', 'e'), List('d', 'e'), List('m', 'n'), List('a', 'b', 'c'), List('f', 'g', 'h'), List('i', 'j', 'k', 'l'))
+
+    assertEquals(result, expected)
   }
 }
