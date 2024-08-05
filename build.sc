@@ -10,7 +10,7 @@ import mill.contrib.scoverage.ScoverageModule
 
 object ninetynine extends RootModule with ScoverageModule with ScalafmtModule with ScalafixModule {
   def scalaVersion = "3.3.3"
-  def scalacOptions = Seq("-Wunused:imports")
+  def scalacOptions = Seq("-Wunused:imports", "-explain", "-deprecation")
   def scoverageVersion = "2.1.1"
 
   def ivyDeps = Agg(
