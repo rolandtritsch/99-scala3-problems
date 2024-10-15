@@ -287,4 +287,15 @@ class P00Test extends munit.ScalaCheckSuite {
 
     assertEquals(result, expected)
   }
+
+  property("P31 - isPrime") {
+    import spire.math._
+    import spire.math.SafeLong.apply
+
+    forAll { (n: Int) =>
+      (n > 0) ==> {
+        assertEquals(P31.isPrime(n), n.isPrime)
+      }
+    }
+  }
 }

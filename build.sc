@@ -27,7 +27,8 @@ object ninetynine extends RootModule with ScoverageModule with ScalafmtModule wi
     def testCachedArgs = Seq("--exclude-tags=ignore")
     def ivyDeps = Agg(
       ivy"org.scalameta::munit::1.0.0",
-      ivy"org.scalameta::munit-scalacheck:1.0.0"
+      ivy"org.scalameta::munit-scalacheck:1.0.0",
+      ivy"org.typelevel::spire:0.18.0"
     )
   }
 }
