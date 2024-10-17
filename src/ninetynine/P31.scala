@@ -8,7 +8,10 @@ import scala.util.boundary, boundary.break
 object P31 {
   final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
+  /** @return true, if the number is prime. */
   def isPrime(n: Int): Boolean = {
+    logger.debug(s"${n}")
+
     if (n <= 1) false
     else {
       boundary:

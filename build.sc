@@ -15,7 +15,8 @@ object ninetynine extends RootModule with ScoverageModule with ScalafmtModule wi
 
   def ivyDeps = Agg(
     ivy"com.typesafe.scala-logging::scala-logging:3.9.5",
-    ivy"ch.qos.logback:logback-classic:1.3.5"
+    ivy"ch.qos.logback:logback-classic:1.3.5",
+    ivy"org.typelevel::spire:0.18.0"
   )
   
   def scalafixIvyDeps = Agg(

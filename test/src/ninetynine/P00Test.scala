@@ -298,4 +298,12 @@ class P00Test extends munit.ScalaCheckSuite {
       }
     }
   }
+
+  property("P32 - gcd") {
+    import spire.math._
+
+    forAll { (a: Int, b: Int) =>
+      assertEquals(P32.gcd(a, b), gcd(a, b).toInt)
+    }
+  }
 }
