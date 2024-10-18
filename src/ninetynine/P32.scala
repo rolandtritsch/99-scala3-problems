@@ -9,7 +9,7 @@ object P32 {
 
   /** @return the greatest common divisor. */
   def gcd(a: Int, b: Int): Int = {
-    logger.info(s"${a} - ${b}")
+    logger.debug(s"${a} - ${b}")
 
     @annotation.tailrec
     def gcdPrime(a: BigInt, b: BigInt): BigInt = {
