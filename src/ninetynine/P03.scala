@@ -7,6 +7,7 @@ object P03 {
   final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the Nth element of the list l */
+  @annotation.tailrec
   final def nth[A](n: Int, l: List[A]): A = {
     assert(n >= 0, "n >= 0")
     assert(l.size - 1 >= n, "l.size - 1 >= n")

@@ -10,6 +10,7 @@ object P10 {
   final def encode[A](l: List[A]): List[(Int, A)] = {
     logger.debug(s"${l}")
 
+    @annotation.tailrec
     def encode(
         l: List[A],
         el: List[(Int, A)],

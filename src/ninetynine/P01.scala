@@ -23,6 +23,7 @@ object P01 {
     * @todo
     *   nothing
     */
+  @annotation.tailrec
   final def last[A](l: List[A]): A = {
     assert(!l.isEmpty, "!l.isEmpty")
     logger.debug(s"${l}")

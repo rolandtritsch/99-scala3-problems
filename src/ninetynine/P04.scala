@@ -10,9 +10,13 @@ object P04 {
   final def size(l: List[Any]): Int = {
     logger.debug(s"${l}")
 
-    l match {
-      case Nil       => 0
-      case _ :: rest => size(rest) + 1
+    @annotation.tailrec
+    def size(l: List[Any], s: Int): Int = {
+      l match {
+        case Nil       => s
+        case _ :: rest => size(rest, s + 1)
+      }
     }
+    size(l, 0)
   }
 }

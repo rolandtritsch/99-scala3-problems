@@ -7,6 +7,7 @@ object P19 {
   final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the list l rotated N times to the left. */
+  @annotation.tailrec
   final def rotate[A](n: Int, l: List[A]): List[A] = {
     logger.debug(s"${n} - ${l}")
 

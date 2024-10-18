@@ -10,10 +10,13 @@ object P05 {
   final def reverse[A](l: List[A]): List[A] = {
     logger.debug("${l}")
 
-    l match {
-      case Nil       => List()
-      case e :: Nil  => List(e)
-      case e :: rest => reverse(rest) ++ List(e)
+    @annotation.tailrec
+    def reverse[A](l: List[A], r: List[A]): List[A] = {
+      l match {
+        case Nil       => r
+        case e :: rest => reverse(rest, e :: r)
+      }
     }
+    reverse(l, List())
   }
 }
