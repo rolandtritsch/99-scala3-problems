@@ -306,4 +306,12 @@ class P00Test extends munit.ScalaCheckSuite {
       assertEquals(P32.gcd(a, b), gcd(a, b).toInt)
     }
   }
+
+  property("P33 - coprime") {
+    import spire.math._
+
+    forAll { (a: Int, b: Int) =>
+      assertEquals(P33.coprime(a, b), gcd(a, b).toInt == 1)
+    }
+  }
 }
