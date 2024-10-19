@@ -314,4 +314,14 @@ class P00Test extends munit.ScalaCheckSuite {
       assertEquals(P33.isCoprime(a, b), gcd(a, b).toInt == 1)
     }
   }
+
+  property("P34 - totient") {
+    import spire.math._
+
+    forAll { (n: Int) =>
+      (n > 0) ==> {
+        assertEquals(P34.totient(n), n.totient.toInt)
+      }
+    }
+  }
 }
