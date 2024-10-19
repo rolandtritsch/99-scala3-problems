@@ -4,12 +4,12 @@ package ninetynine
   */
 
 object P33 {
-    final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
-    /** @return true if the two numbers are coprime. */
-    def coprime(a: Int, b: Int): Boolean = {
-        logger.debug(s"${a} - ${b}")
+  /** @return true if the two numbers are coprime. */
+  def isCoprime(a: Int, b: Int): Boolean = {
+    logger.debug(s"${a} - ${b}")
 
-        P32.gcd(a, b) == 1
-    }
+    P32.gcd(a, b) == 1
+  }
 }
