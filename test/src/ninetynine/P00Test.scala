@@ -318,4 +318,17 @@ class P00Test extends munit.ScalaCheckSuite {
   test("P34 - totient") {
     assertEquals(P34.totient(10), 4)
   }
+
+  test("P35 - primeFactors") {
+    assertEquals(P35.primeFactors(315), List(3, 3, 5, 7))
+    
+    import spire.math._
+    import spire.math.SafeLong._
+
+    (1 to 1000).foreach { n =>
+      val result = P35.primeFactors(n)
+      val expected = n.factor.flatMap { case (prime, exp) => List.fill(exp)(prime.toInt) }.toList.sorted
+      assertEquals(result, expected)
+    }
+  }
 }
