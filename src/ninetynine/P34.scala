@@ -8,7 +8,7 @@ object P34 {
 
   /** @return Eulers totient for n */
   def totient(n: Int): Int = {
-    logger.info(s"${n}")
+    logger.debug(s"${n}")
 
     (1 to n).filter(P33.isCoprime(n, _)).length
   }
