@@ -349,6 +349,19 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   test("P37 - goldbach") {
-    assertEquals(P37.goldbach(28), (5, 23))
+    assertEquals((5, 23), P37.goldbach(28))
+
+    assertEquals((3, 7), P37.goldbach(10))
+    assertEquals((3, 97), P37.goldbach(100))
+    assertEquals((3, 5), P37.goldbach(8))
+    assertEquals((5, 31), P37.goldbach(36))
+    assertEquals((3, 89), P37.goldbach(92))
+  
+    assertEquals((17, 999983), P37.goldbach(1000000))
+    assertEquals((7, 1048583), P37.goldbach(1048590))
+
+    //throws(classOf[IllegalArgumentException]) {P37.goldbach(2)}
+    //throws(classOf[IllegalArgumentException]) {P37.goldbach(3)}
+    //throws(classOf[IllegalArgumentException]) {P37.goldbach(-4)}
   }
 }
