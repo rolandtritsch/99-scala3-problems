@@ -343,7 +343,7 @@ class P00Test extends munit.ScalaCheckSuite {
 
     (1 to 1000).foreach { n =>
       val result = P36.primeFactorMultiplicity(n)
-      val expected = n.factor.map { case (prime, exp) => (prime.toInt, exp) }.toList.sortBy(_._1)
+      val expected = n.factor.map((p, e) => (p.toInt, e)).toList.sorted
       assertEquals(result, expected)
     }
   }
