@@ -347,4 +347,8 @@ class P00Test extends munit.ScalaCheckSuite {
       assertEquals(result, expected)
     }
   }
+
+  test("P37 - goldbach") {
+    assertEquals(P37.goldbach(28), (5, 23))
+  }
 }

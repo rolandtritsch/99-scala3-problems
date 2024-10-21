@@ -1,9 +1,9 @@
 package ninetynine
 
-import scala.util.boundary, boundary.break
-
 /** P31 - Determine whether a given integer number is prime.
   */
+
+import scala.util.boundary, boundary.break
 
 object P31 {
   final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
