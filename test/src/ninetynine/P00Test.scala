@@ -331,4 +331,20 @@ class P00Test extends munit.ScalaCheckSuite {
       assertEquals(result, expected)
     }
   }
+
+  test("P36 - primeFactorMultiplicity") {
+    assertEquals(P36.primeFactorMultiplicity(315), List((3,2), (5,1), (7,1)))
+    assertEquals(P36.primeFactorMultiplicity(100), List((2,2), (5,2)))
+    assertEquals(P36.primeFactorMultiplicity(17), List((17,1)))
+    assertEquals(P36.primeFactorMultiplicity(1), List())
+    
+    import spire.math._
+    import spire.math.SafeLong._
+
+    (1 to 1000).foreach { n =>
+      val result = P36.primeFactorMultiplicity(n)
+      val expected = n.factor.map { case (prime, exp) => (prime.toInt, exp) }.toList.sortBy(_._1)
+      assertEquals(result, expected)
+    }
+  }
 }
