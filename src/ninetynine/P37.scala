@@ -11,9 +11,11 @@ object P37 {
     logger.debug(s"${n}")
 
     val primes = LazyList.from(2).filter(P31.isPrime)
-    primes.find(p => P31.isPrime(n - p)) match {
+    val result = primes.find(p => P31.isPrime(n - p)) match {
       case Some(p) => p -> (n - p)
       case None => throw new NoSuchElementException(s"No Goldbach composition found for $n")
     }
+    logger.debug(s"P37: ${n} -> ${result}")
+    result
   }
 }

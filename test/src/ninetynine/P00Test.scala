@@ -71,7 +71,10 @@ class P00Test extends munit.ScalaCheckSuite {
     assert(P07.flatten(List(List(1, 2), 3)) == List(1, 2, 3))
     assert(P07.flatten(List(List(1, 2), List(3, 4))) == List(1, 2, 3, 4))
     assert(P07.flatten(List(List(1, List(2)), List(3, 4))) == List(1, 2, 3, 4))
-    assert(P07.flatten(List(List(1, 1), 2, List(3, List(5, 8)))) == List(1, 1, 2, 3, 5, 8))
+    assert(
+      P07.flatten(List(List(1, 1), 2, List(3, List(5, 8)))) == List(1, 1, 2, 3,
+        5, 8)
+    )
 
     forAll { (l: List[List[Int]]) =>
       P07.flatten(l) == l.flatten
@@ -79,7 +82,9 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   property("P08 - compress") {
-    val result = P08.compress(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'))
+    val result = P08.compress(
+      List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')
+    )
     val expected = List('a', 'b', 'c', 'd', 'e')
     assert(result.toSet == expected.toSet)
 
@@ -92,25 +97,68 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   test("P09 - pack") {
-    assert(P09.pack(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')) == List(List('a', 'a', 'a', 'a', 'a', 'a'), List('b'), List('c', 'c'), List('d'), List('e', 'e', 'e', 'e')))
-    assert(P09.pack(List(3, 1, 2, 3, 2, 3)).toSet == Set(List(1), List(2, 2), List(3, 3, 3)))
+    assert(
+      P09.pack(
+        List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e',
+          'e')
+      ) == List(
+        List('a', 'a', 'a', 'a', 'a', 'a'),
+        List('b'),
+        List('c', 'c'),
+        List('d'),
+        List('e', 'e', 'e', 'e')
+      )
+    )
+    assert(
+      P09.pack(List(3, 1, 2, 3, 2, 3)).toSet == Set(
+        List(1),
+        List(2, 2),
+        List(3, 3, 3)
+      )
+    )
   }
 
   test("P10 - encode") {
-    assert(P10.encode(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')) == List((4, 'a'), (1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e')))
+    assert(
+      P10.encode(
+        List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e',
+          'e')
+      ) == List((4, 'a'), (1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e'))
+    )
 
-    assert(P10.encode(List('a', 'c', 'c', 'c', 'b', 'b', 'a', 'b', 'b')) == List((1, 'a'), (3, 'c'), (2, 'b'), (1, 'a'), (2, 'b')))
+    assert(
+      P10.encode(List('a', 'c', 'c', 'c', 'b', 'b', 'a', 'b', 'b')) == List(
+        (1, 'a'),
+        (3, 'c'),
+        (2, 'b'),
+        (1, 'a'),
+        (2, 'b')
+      )
+    )
   }
 
   test("P11 - encode") {
-    assert(P11.encode(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')) == List((4, 'a'), 'b', (2, 'c'), (2, 'a'), 'd', (4, 'e')))
+    assert(
+      P11.encode(
+        List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e',
+          'e')
+      ) == List((4, 'a'), 'b', (2, 'c'), (2, 'a'), 'd', (4, 'e'))
+    )
 
-    assert(P11.encode(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')) == List((4, 'a'), 'b', (2, 'c'), (2, 'a'), 'd', (4, 'e')))
+    assert(
+      P11.encode(
+        List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e',
+          'e')
+      ) == List((4, 'a'), 'b', (2, 'c'), (2, 'a'), 'd', (4, 'e'))
+    )
   }
 
   property("P12 - decode") {
-    val result = P12.decode(List((4, 'a'), (1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e')))
-    val expected = List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')
+    val result = P12.decode(
+      List((4, 'a'), (1, 'b'), (2, 'c'), (2, 'a'), (1, 'd'), (4, 'e'))
+    )
+    val expected =
+      List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')
     assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
@@ -122,7 +170,9 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   test("P13 - encode") {
-    val result = P13.encode(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'))
+    val result = P13.encode(
+      List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')
+    )
     val expected = List((6, 'a'), (1, 'b'), (2, 'c'), (1, 'd'), (4, 'e'))
     assertEquals(result, expected)
   }
@@ -133,9 +183,11 @@ class P00Test extends munit.ScalaCheckSuite {
     assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
-      P14.duplicate(l) == l.foldLeft(List[Int]()) { (ll, e) => {
-        ll ++ List(e) ++ List(e)
-      }}
+      P14.duplicate(l) == l.foldLeft(List[Int]()) { (ll, e) =>
+        {
+          ll ++ List(e) ++ List(e)
+        }
+      }
     }
   }
 
@@ -145,28 +197,35 @@ class P00Test extends munit.ScalaCheckSuite {
     assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
-      P15.duplicate(3, l) == l.foldLeft(List[Int]()) { (ll, e) => {
-        ll ++ List(e) ++ List(e) ++ List(e)
-      }}
+      P15.duplicate(3, l) == l.foldLeft(List[Int]()) { (ll, e) =>
+        {
+          ll ++ List(e) ++ List(e) ++ List(e)
+        }
+      }
     }
   }
 
   property("P16 - drop") {
-    val result = P16.drop(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    val result =
+      P16.drop(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
     val expected = List('a', 'b', 'd', 'e', 'g', 'h', 'j', 'k')
     assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
-      P16.drop(3, l) == l.zipWithIndex.foldLeft(List[Int]()) { (ll, e) => {
-        if ((e._2+1)%3 == 0) ll
-        else ll ++ List(e._1)
-      }}
+      P16.drop(3, l) == l.zipWithIndex.foldLeft(List[Int]()) { (ll, e) =>
+        {
+          if ((e._2 + 1) % 3 == 0) ll
+          else ll ++ List(e._1)
+        }
+      }
     }
   }
 
   property("P17 - split") {
-    val result = P17.split(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
-    val expected = (List('a', 'b', 'c'), List('d', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    val result =
+      P17.split(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    val expected =
+      (List('a', 'b', 'c'), List('d', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
     assertEquals(result, expected)
 
     forAll { (l: List[Int]) =>
@@ -177,19 +236,24 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   test("P18 - slice") {
-    val result = P18.slice(3, 7, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    val result = P18.slice(
+      3,
+      7,
+      List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k')
+    )
     val expected = List('d', 'e', 'f', 'g')
     assertEquals(result, expected)
   }
 
   property("P19 - rotate") {
-    val result = P19.rotate(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
+    val result =
+      P19.rotate(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'))
     val expected = List('d', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'a', 'b', 'c')
     assertEquals(result, expected)
 
     forAll { (n: Int, l: List[Int]) =>
       (n >= 0 && l.size - 1 > n) ==> (P19.rotate(n, l) == {
-        if(n >= 0) l.drop(n) ++ l.take(n)
+        if (n >= 0) l.drop(n) ++ l.take(n)
         else l.drop(n + l.size) ++ l.take(n + l.size)
       })
     }
@@ -202,7 +266,7 @@ class P00Test extends munit.ScalaCheckSuite {
 
     forAll { (n: Int, l: List[Int]) =>
       (n >= 0 && l.size - 1 >= n) ==> (P20.removeAt(n, l) == {
-        (l.slice(0, n) ++ l.slice(n + 1, l.size), l(n)) 
+        (l.slice(0, n) ++ l.slice(n + 1, l.size), l(n))
       })
     }
   }
@@ -254,36 +318,108 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   test("P27 - group3") {
-    val result = P27.group3(List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida"))
+    val result = P27.group3(
+      List(
+        "Aldo",
+        "Beat",
+        "Carla",
+        "David",
+        "Evi",
+        "Flip",
+        "Gary",
+        "Hugo",
+        "Ida"
+      )
+    )
     assert(result.flatten.flatten.flatten.size == 18144)
   }
 
   test("P27 - group") {
-    val result = P27.group(List(2, 2, 5), List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida"))
-    assert(result.flatten.flatten.flatten.size == 13063680
+    val result = P27.group(
+      List(2, 2, 5),
+      List(
+        "Aldo",
+        "Beat",
+        "Carla",
+        "David",
+        "Evi",
+        "Flip",
+        "Gary",
+        "Hugo",
+        "Ida"
+      )
     )
+    assert(result.flatten.flatten.flatten.size == 13063680)
   }
 
   test("P28 - lsort") {
-    val input = List(List('a', 'b', 'c'), List('d', 'e'), List('f', 'g', 'h'), List('d', 'e'), List('i', 'j', 'k', 'l'), List('m', 'n'), List('o'))
+    val input = List(
+      List('a', 'b', 'c'),
+      List('d', 'e'),
+      List('f', 'g', 'h'),
+      List('d', 'e'),
+      List('i', 'j', 'k', 'l'),
+      List('m', 'n'),
+      List('o')
+    )
     val result = P28.lsort(input)
-    val expected = List(List('o'), List('d', 'e'), List('d', 'e'), List('m', 'n'), List('a', 'b', 'c'), List('f', 'g', 'h'), List('i', 'j', 'k', 'l'))
+    val expected = List(
+      List('o'),
+      List('d', 'e'),
+      List('d', 'e'),
+      List('m', 'n'),
+      List('a', 'b', 'c'),
+      List('f', 'g', 'h'),
+      List('i', 'j', 'k', 'l')
+    )
 
     assertEquals(result, expected)
   }
 
   test("P28 - lsortFreq - Char") {
-    val input = List(List('a', 'b', 'c'), List('d', 'e'), List('f', 'g', 'h'), List('d', 'e'), List('i', 'j', 'k', 'l'), List('m', 'n'), List('o'))
+    val input = List(
+      List('a', 'b', 'c'),
+      List('d', 'e'),
+      List('f', 'g', 'h'),
+      List('d', 'e'),
+      List('i', 'j', 'k', 'l'),
+      List('m', 'n'),
+      List('o')
+    )
     val result = P28.lsortFreq(input)
-    val expected = List(List('i', 'j', 'k', 'l'), List('o'), List('a', 'b', 'c'), List('f', 'g', 'h'), List('d', 'e'), List('d', 'e'), List('m', 'n'))
+    val expected = List(
+      List('i', 'j', 'k', 'l'),
+      List('o'),
+      List('a', 'b', 'c'),
+      List('f', 'g', 'h'),
+      List('d', 'e'),
+      List('d', 'e'),
+      List('m', 'n')
+    )
 
     assertEquals(result, expected)
   }
 
   test("P28 - lsortFreq - Int") {
-    val input = List(List(1, 2, 3), List(4, 5), List(6, 7, 8), List(4, 5), List(9, 10, 11, 12), List(13, 14), List(15))
+    val input = List(
+      List(1, 2, 3),
+      List(4, 5),
+      List(6, 7, 8),
+      List(4, 5),
+      List(9, 10, 11, 12),
+      List(13, 14),
+      List(15)
+    )
     val result = P28.lsortFreq(input)
-    val expected = List(List(9, 10, 11, 12), List(15), List(1, 2, 3), List(6, 7, 8), List(4, 5), List(4, 5), List(13, 14))
+    val expected = List(
+      List(9, 10, 11, 12),
+      List(15),
+      List(1, 2, 3),
+      List(6, 7, 8),
+      List(4, 5),
+      List(4, 5),
+      List(13, 14)
+    )
 
     assertEquals(result, expected)
   }
@@ -321,23 +457,26 @@ class P00Test extends munit.ScalaCheckSuite {
 
   test("P35 - primeFactors") {
     assertEquals(P35.primeFactors(315), List(3, 3, 5, 7))
-    
+
     import spire.math._
     import spire.math.SafeLong._
 
     (1 to 1000).foreach { n =>
       val result = P35.primeFactors(n)
-      val expected = n.factor.flatMap { case (prime, exp) => List.fill(exp)(prime.toInt) }.toList.sorted
+      val expected = n.factor
+        .flatMap { case (prime, exp) => List.fill(exp)(prime.toInt) }
+        .toList
+        .sorted
       assertEquals(result, expected)
     }
   }
 
   test("P36 - primeFactorMultiplicity") {
-    assertEquals(P36.primeFactorMultiplicity(315), List((3,2), (5,1), (7,1)))
-    assertEquals(P36.primeFactorMultiplicity(100), List((2,2), (5,2)))
-    assertEquals(P36.primeFactorMultiplicity(17), List((17,1)))
+    assertEquals(P36.primeFactorMultiplicity(315), List((3, 2), (5, 1), (7, 1)))
+    assertEquals(P36.primeFactorMultiplicity(100), List((2, 2), (5, 2)))
+    assertEquals(P36.primeFactorMultiplicity(17), List((17, 1)))
     assertEquals(P36.primeFactorMultiplicity(1), List())
-    
+
     import spire.math._
     import spire.math.SafeLong._
 
@@ -348,7 +487,7 @@ class P00Test extends munit.ScalaCheckSuite {
     }
   }
 
-  test("P37 - goldbach") {
+  property("P37 - goldbach") {
     assertEquals((5, 23), P37.goldbach(28))
 
     assertEquals((3, 7), P37.goldbach(10))
@@ -356,12 +495,42 @@ class P00Test extends munit.ScalaCheckSuite {
     assertEquals((3, 5), P37.goldbach(8))
     assertEquals((5, 31), P37.goldbach(36))
     assertEquals((3, 89), P37.goldbach(92))
-  
+
     assertEquals((17, 999983), P37.goldbach(1000000))
     assertEquals((7, 1048583), P37.goldbach(1048590))
 
-    throws(classOf[IllegalArgumentException]) {P37.goldbach(2)}
-    throws(classOf[IllegalArgumentException]) {P37.goldbach(3)}
-    throws(classOf[IllegalArgumentException]) {P37.goldbach(-4)}
+    throws(classOf[IllegalArgumentException]) { P37.goldbach(2) }
+    throws(classOf[IllegalArgumentException]) { P37.goldbach(3) }
+    throws(classOf[IllegalArgumentException]) { P37.goldbach(-4) }
+    /*
+    forAll { (n: Int) =>
+      (n > 2 && n % 2 == 0) ==> {
+        assertEquals(P37.goldbach(n), goldbach(n))
+      }
+    }
+    */
   }
+
+  import spire.math.prime
+
+  def goldbach(n: Int): (Int, Int) = {
+    require(
+      n > 2 && n % 2 == 0,
+      "Input must be an even number greater than 2"
+    )
+
+    val primes = prime.lazyList.takeWhile(_ <= n / 2).map(_.toInt)
+
+    val p = primes.find(pp => prime.isPrime(n - pp))
+    val result =p match {
+      case Some(ppp) => (ppp, n - ppp)
+      case None =>
+        throw new NoSuchElementException(
+          s"No Goldbach composition found for $n"
+        )
+    }
+    //println(s"${n} -> ${result}")
+    result
+  }
+
 }
