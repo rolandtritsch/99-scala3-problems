@@ -6,7 +6,7 @@ To make this work you need to ...
 
 - run `./mill --watch test --exclude-tags=ignore`
 
-The solutions feature ...
+The repo features ...
 
 - solving the problems
 - using [mill][] as a build tool
@@ -20,6 +20,7 @@ The solutions feature ...
 - using [scoverage][] to generate a code-coverage report
 - using Github Actions to publish the code-coverage report as/on Github Pages
 - using tags to ignore tests that should not run
+- using various LLMs to solve some of the problems (on seperate branches)
 
 [ci-badge]: https://github.com/rolandtritsch/99-scala3-problems/actions/workflows/ci.yml/badge.svg
 [documentation]: https://tedn.life/99-scala3-problems
