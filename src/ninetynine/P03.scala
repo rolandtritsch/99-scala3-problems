@@ -9,8 +9,8 @@ object P03 {
   /** @return the Nth element of the list l */
   @annotation.tailrec
   final def nth[A](n: Int, l: List[A]): A = {
-    assert(n >= 0, "n >= 0")
-    assert(l.size - 1 >= n, "l.size - 1 >= n")
+    require(n >= 0, "n >= 0")
+    require(l.size - 1 >= n, "l.size - 1 >= n")
     logger.debug(s"${n} - ${l}")
 
     l match {

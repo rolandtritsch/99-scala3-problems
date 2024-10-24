@@ -8,7 +8,7 @@ object P17 {
 
   /** @return two lists that split l at position */
   final def split[A](n: Int, l: List[A]): (List[A], List[A]) = {
-    assert(l.size - 1 >= n, "l.size - 1 >= n")
+    require(l.size - 1 >= n, "l.size - 1 >= n")
     logger.debug(s"${l}")
 
     l.zipWithIndex.foldLeft(List[A](), List[A]()) { (ll, e) => {

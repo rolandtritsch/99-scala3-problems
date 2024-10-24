@@ -8,9 +8,8 @@ object P24 {
 
   /** @return n out of rangeSize numbers (as a list) */
   final def lotto(n: Int, rangeSize: Int): List[Int] = {
+    require(n >= 0 && n <= rangeSize, "n >= 0 && n <= rangeSize")
     logger.debug(s"${n} - ${rangeSize}")
-    assert(n >= 0, "n >= 0")
-    assert(rangeSize >= n, "rangeSize >= n")
 
     P23.randomSelect(n, P22.range(1, rangeSize))
   }

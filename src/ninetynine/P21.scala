@@ -8,6 +8,7 @@ object P21 {
 
   /** @return a new list with e inserted at position n into l */
   final def insertAt[A](e: A, n: Int, l: List[A]): List[A] = {
+    require(n >= 0 && n <= l.size, "n >= 0 && n <= l.size")
     logger.debug(s"${e} - ${n} - ${l}")
 
     val (head, tail) = l.splitAt(n)

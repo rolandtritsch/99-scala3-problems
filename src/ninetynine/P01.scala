@@ -25,7 +25,7 @@ object P01 {
     */
   @annotation.tailrec
   final def last[A](l: List[A]): A = {
-    assert(!l.isEmpty, "!l.isEmpty")
+    require(!l.isEmpty, "!l.isEmpty")
     logger.debug(s"${l}")
 
     l match {

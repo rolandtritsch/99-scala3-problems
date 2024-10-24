@@ -21,8 +21,8 @@ object P26 {
   }
 
   private def combinations[A](k: Int, tail: List[A], head: List[A]): List[List[A]] = {
-    assert(k >= 1, "k >= 1")
-    assert(!tail.isEmpty, "!tail.isEmpty")
+    require(k >= 1, "k >= 1")
+    require(!tail.isEmpty, "!tail.isEmpty")
 
     // Just build the combinations of the head and the remaining
     // elements.

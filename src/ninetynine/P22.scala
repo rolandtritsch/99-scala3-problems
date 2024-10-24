@@ -8,7 +8,7 @@ object P22 {
 
   /** @return a list with all integers from/to */
   final def range(from: Int, to: Int): List[Int] = {
-    assert(to >= from, "to >= from")
+    require(to >= from, "to >= from")
     logger.debug(s"${from} - ${to}")
 
     List.fill(to - from)(1).foldLeft(List(from)) { (a, e) => {
