@@ -2,6 +2,8 @@ package ninetynine
 
 /** P32 - Determine the greatest common divisor 
   * of two positive integer numbers.
+  *
+  * @note This implements the [[https://en.wikipedia.org/wiki/Euclidean_algorithm Euclidean algorithm]].
   */
 
 object P32 {
@@ -12,9 +14,9 @@ object P32 {
     logger.debug(s"${a} - ${b}")
 
     @annotation.tailrec
-    def gcdPrime(a: BigInt, b: BigInt): BigInt = {
-      if (b == 0) a else gcdPrime(b, a % b)  
+    def gcd(a: BigInt, b: BigInt): BigInt = {
+      if (b == 0) a else gcd(b, a % b)
     }
-    gcdPrime(BigInt(a).abs, BigInt(b).abs).toInt
+    gcd(BigInt(a).abs, BigInt(b).abs).toInt
   }
 }
