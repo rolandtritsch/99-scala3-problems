@@ -9,10 +9,11 @@ import $ivy.`com.lihaoyi::mill-contrib-scoverage:`
 import mill.contrib.scoverage.ScoverageModule
 
 object ninetynine extends RootModule with ScoverageModule with ScalafmtModule with ScalafixModule {
-  def scalaVersion = "3.3.4"
+  def scalaVersion = "3.5.0"
   def scalacOptions = Seq("-Wunused:imports", "-explain", "-deprecation")
   def scoverageVersion = "2.2.1"
-  override def ammoniteVersion = "3.0.0-2-6342755f"
+  //def scalaVersion = "3.3.4"
+  //override def ammoniteVersion = "3.0.0-2-6342755f"
 
   def ivyDeps = Agg(
     ivy"com.typesafe.scala-logging::scala-logging:3.9.5",
@@ -20,7 +21,6 @@ object ninetynine extends RootModule with ScoverageModule with ScalafmtModule wi
   )
   
   def scalafixIvyDeps = Agg(
-    // ivy"net.pixiv::scalafix-pixiv-rule:4.5.3",
     ivy"com.github.xuwei-k::scalafix-rules:0.4.3"
   )
 
