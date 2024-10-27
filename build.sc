@@ -9,7 +9,7 @@ import $ivy.`com.lihaoyi::mill-contrib-scoverage:`
 import mill.contrib.scoverage.ScoverageModule
 
 object ninetynine extends RootModule with ScoverageModule with ScalafmtModule with ScalafixModule {
-  def scalaVersion = "3.5.0"
+  def scalaVersion = "3.5.1"
   def scalacOptions = Seq("-Wunused:imports", "-explain", "-deprecation")
   def scoverageVersion = "2.2.1"
   //def scalaVersion = "3.3.4"
