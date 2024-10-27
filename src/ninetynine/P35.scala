@@ -11,11 +11,11 @@ object P35 {
     logger.debug(s"${n}")
 
     @annotation.tailrec
-    def primeFactorsR(n: Int, p: Int, pfs: List[Int]): List[Int] = {
+    def primeFactors(n: Int, p: Int, pfs: List[Int]): List[Int] = {
       if (n < 2) pfs
-      else if (n % p == 0) primeFactorsR(n / p, p, pfs ++ List(p))
-      else primeFactorsR(n, p + 1, pfs)
+      else if (n % p == 0) primeFactors(n / p, p, pfs ++ List(p))
+      else primeFactors(n, p + 1, pfs)
     }
-    primeFactorsR(n, 2, List())
+    primeFactors(n.abs, 2, List())
   }
 }
