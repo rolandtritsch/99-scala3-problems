@@ -447,12 +447,18 @@ class P00Test extends munit.ScalaCheckSuite {
     import spire.math._
 
     forAll { (a: Int, b: Int) =>
-      assertEquals(P33.isCoprime(a, b), gcd(a, b).toInt == 1)
+      assertEquals(P33.isCoprimeTo(a, b), gcd(a, b).toInt == 1)
     }
   }
 
   test("P34 - totient") {
+    assertEquals(P34.totient(0), 0)
+    assertEquals(P34.totient(1), 1)
+    assertEquals(P34.totient(7), 6)
     assertEquals(P34.totient(10), 4)
+    assertEquals(P34.totient(9), 6)
+
+    throws(classOf[IllegalArgumentException]) { P34.totient(-1) }
   }
 
   test("P35 - primeFactors") {
