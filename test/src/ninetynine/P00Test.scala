@@ -463,6 +463,7 @@ class P00Test extends munit.ScalaCheckSuite {
 
   test("P35 - primeFactors") {
     assertEquals(P35.primeFactors(0), List())
+    assertEquals(P35.primeFactors(1), List())
     assertEquals(P35.primeFactors(315), List(3, 3, 5, 7))
     assertEquals(P35.primeFactors(-315), List(3, 3, 5, 7))
 
@@ -472,7 +473,7 @@ class P00Test extends munit.ScalaCheckSuite {
     (-999 to 999).foreach { n =>
       val result = P35.primeFactors(n)
       val expected = n.factor
-        .flatMap { case (prime, exp) => List.fill(exp)(prime.toInt) }
+        .flatMap((prime, exp) => List.fill(exp)(prime.toInt))
         .toList
         .sorted
       assertEquals(result, expected)
@@ -480,65 +481,55 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   test("P36 - primeFactorMultiplicity") {
+    assertEquals(
+      P36.primeFactorMultiplicity(-315),
+      List((3, 2), (5, 1), (7, 1))
+    )
     assertEquals(P36.primeFactorMultiplicity(315), List((3, 2), (5, 1), (7, 1)))
     assertEquals(P36.primeFactorMultiplicity(100), List((2, 2), (5, 2)))
     assertEquals(P36.primeFactorMultiplicity(17), List((17, 1)))
     assertEquals(P36.primeFactorMultiplicity(1), List())
+    assertEquals(P36.primeFactorMultiplicity(0), List())
 
     import spire.math._
     import spire.math.SafeLong._
 
-    (1 to 1000).foreach { n =>
+    (-999 to 999).foreach { n =>
       val result = P36.primeFactorMultiplicity(n)
       val expected = n.factor.map((p, e) => (p.toInt, e)).toList.sorted
       assertEquals(result, expected)
     }
   }
 
-  property("P37 - goldbach") {
-    assertEquals((5, 23), P37.goldbach(28))
+  test("P40 - goldbach") {
+    assertEquals((5, 23), P40.goldbach(28))
 
-    assertEquals((3, 7), P37.goldbach(10))
-    assertEquals((3, 97), P37.goldbach(100))
-    assertEquals((3, 5), P37.goldbach(8))
-    assertEquals((5, 31), P37.goldbach(36))
-    assertEquals((3, 89), P37.goldbach(92))
+    assertEquals((3, 7), P40.goldbach(10))
+    assertEquals((3, 97), P40.goldbach(100))
+    assertEquals((3, 5), P40.goldbach(8))
+    assertEquals((5, 31), P40.goldbach(36))
+    assertEquals((3, 89), P40.goldbach(92))
 
-    assertEquals((17, 999983), P37.goldbach(1000000))
-    assertEquals((7, 1048583), P37.goldbach(1048590))
+    assertEquals((17, 999983), P40.goldbach(1000000))
+    assertEquals((7, 1048583), P40.goldbach(1048590))
 
-    throws(classOf[IllegalArgumentException]) { P37.goldbach(2) }
-    throws(classOf[IllegalArgumentException]) { P37.goldbach(3) }
-    throws(classOf[IllegalArgumentException]) { P37.goldbach(-4) }
-    /*
-    forAll { (n: Int) =>
-      (n > 2 && n % 2 == 0) ==> {
-        assertEquals(P37.goldbach(n), goldbach(n))
+    throws(classOf[IllegalArgumentException]) { P40.goldbach(2) }
+    throws(classOf[IllegalArgumentException]) { P40.goldbach(3) }
+    throws(classOf[IllegalArgumentException]) { P40.goldbach(-4) }
+
+    import spire.math.prime
+
+    def goldbach(n: Int): (Int, Int) = {
+      val primes = prime.lazyList.map(_.toInt)
+      primes.find(pp => prime.isPrime(n - pp)) match {
+        case Some(ppp) => (ppp, n - ppp)
+        case None      => throw new RuntimeException("Unexpected case")
       }
     }
-    */
+
+    val ns = P24.lotto(10, 1_000).filter(n => n > 2 && P40.isEven(n))
+    ns.foreach(n => {
+      assertEquals(P40.goldbach(n), goldbach(n))
+    })
   }
-
-  import spire.math.prime
-
-  def goldbach(n: Int): (Int, Int) = {
-    require(
-      n > 2 && n % 2 == 0,
-      "Input must be an even number greater than 2"
-    )
-
-    val primes = prime.lazyList.takeWhile(_ <= n / 2).map(_.toInt)
-
-    val p = primes.find(pp => prime.isPrime(n - pp))
-    val result =p match {
-      case Some(ppp) => (ppp, n - ppp)
-      case None =>
-        throw new NoSuchElementException(
-          s"No Goldbach composition found for $n"
-        )
-    }
-    //println(s"${n} -> ${result}")
-    result
-  }
-
 }
