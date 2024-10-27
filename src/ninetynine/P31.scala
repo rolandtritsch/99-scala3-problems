@@ -1,6 +1,9 @@
 package ninetynine
 
 /** P31 - Determine whether a given integer number is prime.
+  *
+  * @note This implementation will be used by [[ninetynine.arithmetic.S99Int]].
+  * @note This implements the [[https://www.khanacademy.org/computing/computer-science/cryptography/comp-number-theory/a/trial-division Trial division algorithm]].
   */
 
 object P31 {
@@ -8,15 +11,11 @@ object P31 {
 
   /** @return true, if the number is prime. */
   def isPrime(n: Int): Boolean = {
-    import scala.util.boundary, boundary.break
-
     require(n > 1, "n > 1")
     logger.debug(s"${n}")
 
-    boundary:
-      for (i <- 2 to Math.sqrt(n).toInt) {
-        if (n % i == 0) break(false)
-      }
-      true        
+    val range = 2 to Math.sqrt(n).toInt
+    val isNotPrime = LazyList(range*).exists(n % _ == 0)
+    !isNotPrime
   }
 }
