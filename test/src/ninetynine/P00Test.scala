@@ -60,11 +60,17 @@ class P00Test extends munit.ScalaCheckSuite {
     }
   }
 
-  test("P06 - palindrome") {
+  property("P06 - palindrome") {
     assert(P06.isPalindrom("abba"))
     assert(P06.isPalindrom("racecar"))
+    assert(P06.isPalindrom("madam"))
     assert(P06.isPalindrom("())("))
-    assert(!P06.isPalindrom("()()"))
+    assert(!P06.isPalindrom("()()"))    
+
+    forAll { (s: String) =>
+      val palindrome = s + s.reverse
+      assert(P06.isPalindrom(palindrome))
+    }
   }
 
   property("P07 - nested") {
