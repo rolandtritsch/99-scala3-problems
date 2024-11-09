@@ -559,4 +559,17 @@ class P00Test extends munit.ScalaCheckSuite {
       assertEquals(P40.goldbach(n), goldbach(n))
     })
   }
+
+  test("P41 - goldbachList") {
+    val result = P41.goldbachList(10, 20)
+    val expected = List(
+      (3, 7),
+      (5, 7),
+      (3, 11),
+      (3, 13),
+      (5, 13),
+      (3, 17)
+    )
+    assertEquals(result, expected)
+  }
 }
