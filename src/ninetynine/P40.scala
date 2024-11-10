@@ -13,17 +13,19 @@ package ninetynine
 object P40 {
   val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
+  /** @return a Goldbach composition */
   def goldbach(n: Int): (Int, Int) = {
     require(n > 2 && isEven(n), "n > 2 && isEven(n)")
     logger.debug(s"${n}")
 
     val primes = LazyList.from(2).filter(P31.isPrime)
-    primes.find(p => P31.isPrime(n - p)) match {
-      case Some(p) => (p, (n - p))
+    primes.find(pCurrent => P31.isPrime(n - pCurrent)) match {
+      case Some(pFound) => (pFound, (n - pFound))
       case None => throw new RuntimeException("Unexpected case")
     }
   }
 
+  /** @return true if n is even */
   def isEven(n: Int): Boolean = {
     n % 2 == 0
   }
