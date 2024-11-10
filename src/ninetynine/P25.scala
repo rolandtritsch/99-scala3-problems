@@ -6,10 +6,10 @@ import scala.util.Random
   */
 
 object P25 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return a random shuffle of list l */
-  final def randomPermute[A](l: List[A]): List[A] = {
+  def randomPermute[A](l: List[A]): List[A] = {
     logger.debug(s"${l}")
 
     if(l.size >= 2) {

@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P34 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return Eulers totient for n */
   def totient(n: Int): Int = {

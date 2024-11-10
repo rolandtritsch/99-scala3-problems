@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P39 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return List of prime numbers in the given range. */
   def listPrimesInRange(range: Range): List[Int] = {

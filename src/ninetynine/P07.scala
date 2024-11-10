@@ -4,10 +4,10 @@ package ninetynine
   */
 
 object P07 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return flattened list l */
-  final def flatten(l: Any): List[Any] = {
+  def flatten(l: Any): List[Any] = {
     logger.debug(s"${l}")
 
     l match {

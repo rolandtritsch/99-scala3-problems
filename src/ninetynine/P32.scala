@@ -7,7 +7,7 @@ package ninetynine
   */
 
 object P32 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the greatest common divisor. */
   def gcd(a: Int, b: Int): Int = {

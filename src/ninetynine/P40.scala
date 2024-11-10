@@ -11,7 +11,7 @@ package ninetynine
   */
 
 object P40 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   def goldbach(n: Int): (Int, Int) = {
     require(n > 2 && isEven(n), "n > 2 && isEven(n)")

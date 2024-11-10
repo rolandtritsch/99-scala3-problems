@@ -4,10 +4,10 @@ package ninetynine
   */
 
 object P10 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return run-length encoded list */
-  final def encode[A](l: List[A]): List[(Int, A)] = {
+  def encode[A](l: List[A]): List[(Int, A)] = {
     logger.debug(s"${l}")
 
     @annotation.tailrec

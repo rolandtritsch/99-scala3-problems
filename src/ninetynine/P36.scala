@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P36 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return a list of tuples containing prime factors and their multiplicity. */
   def primeFactorMultiplicity(n: Int): List[(Int, Int)] = {

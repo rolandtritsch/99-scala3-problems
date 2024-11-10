@@ -4,10 +4,10 @@ package ninetynine
   */
 
 object P18 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the slice from/to of list l */
-  final def slice[A](from: Int, to: Int, l: List[A]): List[A] = {
+  def slice[A](from: Int, to: Int, l: List[A]): List[A] = {
     logger.debug(s"${l}")
 
     (for(i <- 0 until l.size; if(i >= from && i < to)) yield l(i)).toList

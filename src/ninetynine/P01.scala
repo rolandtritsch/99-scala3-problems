@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P01 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** Do a recursive pattern match to find last element of a list.
     *
@@ -24,7 +24,7 @@ object P01 {
     *   nothing
     */
   @annotation.tailrec
-  final def last[A](l: List[A]): A = {
+  def last[A](l: List[A]): A = {
     require(!l.isEmpty, "!l.isEmpty")
     logger.debug(s"${l}")
 
@@ -36,5 +36,5 @@ object P01 {
   }
 
   /** @deprecated("this method is deprecated", "0.1.0") */
-  final def last_[A](l: List[A]): A = l.last
+  def last_[A](l: List[A]): A = l.last
 }

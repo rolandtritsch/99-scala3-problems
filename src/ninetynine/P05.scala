@@ -4,10 +4,10 @@ package ninetynine
   */
 
 object P05 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the reverse of the list l */
-  final def reverse[A](l: List[A]): List[A] = {
+  def reverse[A](l: List[A]): List[A] = {
     logger.debug("${l}")
 
     @annotation.tailrec

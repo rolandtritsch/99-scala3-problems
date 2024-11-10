@@ -4,10 +4,10 @@ package ninetynine
   */
 
 object P20 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the list l without the element on position n */
-  final def removeAt[A](n: Int, l: List[A]): (List[A], A) = {
+  def removeAt[A](n: Int, l: List[A]): (List[A], A) = {
     require(n >= 0 && n < l.size, "n >= 0 && n < l.size")
     require(!l.isEmpty, "!l.isEmpty")
     logger.debug(s"${n} - ${l}")

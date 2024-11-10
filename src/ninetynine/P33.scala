@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P33 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return true if the two numbers are coprime. */
   def isCoprimeTo(a: Int, b: Int): Boolean = {

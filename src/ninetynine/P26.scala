@@ -5,7 +5,7 @@ package ninetynine
   */
 
 object P26 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** Iterate over the list and remove one element at a time.  Do this K
     * times recursivly and keep track on the elements that you take
@@ -14,7 +14,7 @@ object P26 {
     *
     * @return the generated list of combinations
     */
-  final def combinations[A](k: Int, l: List[A]): List[List[A]] = {
+  def combinations[A](k: Int, l: List[A]): List[List[A]] = {
     logger.debug(s"${k} - ${l}")
 
     combinations(k, l, List[A]())

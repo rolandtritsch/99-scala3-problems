@@ -4,11 +4,11 @@ package ninetynine
   */
 
 object P02 {
-  final val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the last but one element of the list l */
   @annotation.tailrec
-  final def penultimate[A](l: List[A]): A = {
+  def penultimate[A](l: List[A]): A = {
     require(l.size >= 2, "l.size >= 2")
     logger.debug(s"${l}")
 
