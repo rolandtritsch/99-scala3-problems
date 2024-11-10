@@ -10,7 +10,6 @@ object P41 {
   def goldbachList(r: Range): List[(Int, Int)] = {
     require(r.start >= 2 && P40.isEven(r.start), "r.start >= 2 && isEven(r.start)")
     require(r.end >= r.start && P40.isEven(r.end), "r.end >= r.start && isEven(r.end)")
-
     logger.debug(s"${r}")
 
     r.filter(x => P40.isEven(x)).map(P40.goldbach).toList
@@ -19,7 +18,6 @@ object P41 {
   /** @return a list of Goldbach compositions with the first element of the pair greater than limit */
   def goldbachListLimited(r: Range, limit: Int): List[(Int, Int)] = {
     require(limit >= 2, "limit >= 2")
-
     logger.debug(s"${r} - ${limit}")
 
     goldbachList(r).filter((p, _) => p > limit)
