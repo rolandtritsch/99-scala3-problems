@@ -609,4 +609,21 @@ class P00Test extends munit.ScalaCheckSuite {
     )
     assertEquals(result, expected)
   }
+
+  test("P41 - goldbachListLimited") {
+    val result = P41.goldbachListLimited(10 to 20, 3)
+    val expected = List((5, 7), (5, 13))
+    assertEquals(result, expected)
+  }
+
+  test("P41 - goldbachListLimited large range") {
+    val result = P41.goldbachListLimited(4 to 2000, 50)
+    val expected = List(
+      (73, 919),
+      (61, 1321),
+      (67, 1789),
+      (61, 1867)
+    )
+    assertEquals(result, expected)
+  }
 }

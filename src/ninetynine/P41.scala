@@ -15,4 +15,12 @@ object P41 {
 
     r.filter(x => P40.isEven(x)).map(P40.goldbach).toList
   }
+
+  def goldbachListLimited(r: Range, limit: Int): List[(Int, Int)] = {
+    require(limit > 2, "limit > 2")
+
+    logger.debug(s"${r} - ${limit}")
+
+    goldbachList(r).filter(c => c._1 > limit)
+  }  
 }
