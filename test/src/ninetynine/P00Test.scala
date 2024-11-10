@@ -463,6 +463,7 @@ class P00Test extends munit.ScalaCheckSuite {
     assertEquals(P34.totient(7), 6)
     assertEquals(P34.totient(10), 4)
     assertEquals(P34.totient(9), 6)
+    assertEquals(P34.totient(10090), 4032)
 
     throws(classOf[IllegalArgumentException]) { P34.totient(-1) }
   }
@@ -505,6 +506,14 @@ class P00Test extends munit.ScalaCheckSuite {
       val expected = n.factor.map((p, e) => (p.toInt, e)).toList.sorted
       assertEquals(result, expected)
     }
+  }
+
+  property("P37 - totient") {
+    assertEquals(P37.totient(10090), P34.totient(10090))
+    
+    P24.lotto(10, 1_000).foreach(n => {
+      assertEquals(P37.totient(n), P34.totient(n))
+    })
   }
 
   test("P39 - listPrimesInRange") {
