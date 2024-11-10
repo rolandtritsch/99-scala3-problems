@@ -561,7 +561,7 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   test("P41 - goldbachList") {
-    val result = P41.goldbachList(10, 20)
+    val result = P41.goldbachList(10 to 20)
     val expected = List(
       (3, 7),
       (5, 7),
@@ -574,31 +574,31 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   test("P41 - goldbachList with no primes") {
-    val result = P41.goldbachList(4, 4)
+    val result = P41.goldbachList(4 to 4)
     val expected = List((2, 2))
     assertEquals(result, expected)
   }
 
   test("P41 - goldbachList with invalid range") {
     intercept[IllegalArgumentException] {
-      P41.goldbachList(20, 10)
+      P41.goldbachList(20 to 10)
     }
   }
 
   test("P41 - goldbachList with negative range") {
     intercept[IllegalArgumentException] {
-      P41.goldbachList(-10, -20)
+      P41.goldbachList(-10 to -20)
     }
   }
 
   test("P41 - goldbachList with single even number") {
-    val result = P41.goldbachList(28, 28)
+    val result = P41.goldbachList(28 to 28)
     val expected = List((5, 23))
     assertEquals(result, expected)
   }
 
   test("P41 - goldbachList with large range") {
-    val result = P41.goldbachList(100, 102)
+    val result = P41.goldbachList(100 to 102)
     val expected = List(
       (3, 97),
       (11, 89),
