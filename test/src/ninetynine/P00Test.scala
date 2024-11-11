@@ -65,7 +65,7 @@ class P00Test extends munit.ScalaCheckSuite {
     assert(P06.isPalindrom("racecar"))
     assert(P06.isPalindrom("madam"))
     assert(P06.isPalindrom("())("))
-    assert(!P06.isPalindrom("()()"))    
+    assert(!P06.isPalindrom("()()"))
 
     forAll { (s: String) =>
       val palindrome = s + s.reverse
@@ -510,14 +510,19 @@ class P00Test extends munit.ScalaCheckSuite {
 
   property("P37 - totient") {
     assertEquals(P37.totient(10090), P34.totient(10090))
-    
-    P24.lotto(10, 1_000).foreach(n => {
-      assertEquals(P37.totient(n), P34.totient(n))
-    })
+
+    P24
+      .lotto(10, 1_000)
+      .foreach(n => {
+        assertEquals(P37.totient(n), P34.totient(n))
+      })
   }
 
   test("P39 - listPrimesInRange") {
-    assertEquals(P39.listPrimesInRange(7 to 31), List(7, 11, 13, 17, 19, 23, 29, 31))
+    assertEquals(
+      P39.listPrimesInRange(7 to 31),
+      List(7, 11, 13, 17, 19, 23, 29, 31)
+    )
     assertEquals(P39.listPrimesInRange(2 to 10), List(2, 3, 5, 7))
     assertEquals(P39.listPrimesInRange(2 to 1), List())
     assertEquals(P39.listPrimesInRange(2 to 2), List(2))
@@ -632,6 +637,83 @@ class P00Test extends munit.ScalaCheckSuite {
       (61, 1321),
       (67, 1789),
       (61, 1867)
+    )
+    assertEquals(result, expected)
+  }
+
+  test("P46 - and") {
+    val result = P46.table(P46.and)
+    val expected = List(
+      (true, true, true),
+      (true, false, false),
+      (false, true, false),
+      (false, false, false)
+    )
+    assertEquals(result, expected)
+  }
+
+  test("P46 - or") {
+    val result = P46.table(P46.or)
+    val expected = List(
+      (true, true, true),
+      (true, false, true),
+      (false, true, true),
+      (false, false, false)
+    )
+    assertEquals(result, expected)
+  }
+
+  test("P46 - nand") {
+    val result = P46.table(P46.nand)
+    val expected = List(
+      (true, true, false),
+      (true, false, true),
+      (false, true, true),
+      (false, false, true)
+    )
+    assertEquals(result, expected)
+  }
+
+  test("P46 - nor") {
+    val result = P46.table(P46.nor)
+    val expected = List(
+      (true, true, false),
+      (true, false, false),
+      (false, true, false),
+      (false, false, true)
+    )
+    assertEquals(result, expected)
+  }
+
+  test("P46 - xor") {
+    val result = P46.table(P46.xor)
+    val expected = List(
+      (true, true, false),
+      (true, false, true),
+      (false, true, true),
+      (false, false, false)
+    )
+    assertEquals(result, expected)
+  }
+
+  test("P46 - impl") {
+    val result = P46.table(P46.impl)
+    val expected = List(
+      (true, true, true),
+      (true, false, false),
+      (false, true, true),
+      (false, false, true)
+    )
+    assertEquals(result, expected)
+  }
+
+  test("P46 - equ") {
+    val result = P46.table(P46.equ)
+    val expected = List(
+      (true, true, true),
+      (true, false, false),
+      (false, true, false),
+      (false, false, true)
     )
     assertEquals(result, expected)
   }
