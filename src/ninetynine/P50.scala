@@ -2,11 +2,12 @@ package ninetynine
 
 /** P50 - Huffman code.
   *
-  * First of all, study a good paper on Huffman coding. In this problem, we will implement the
-  * so-called greedy algorithm for constructing Huffman codes.
+  * First of all, study a good paper on Huffman coding. In this
+  * problem, we will implement the so-called greedy algorithm for
+  * constructing Huffman codes.
   *
-  * Your task is to construct a Huffman code tree for a given set of characters with their
-  * frequencies.
+  * Your task is to construct a Huffman code tree for a given set of
+  * characters with their frequencies.
   *
   * Example:
   *   scala> huffman(List(('a', 45), ('b', 13), ('c', 12), ('d', 16), ('e', 9), ('f', 5)))
@@ -16,41 +17,46 @@ package ninetynine
 object P50 {
   val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
+  /** @return the list of huffman codes. */
   def huffman[T](list: List[(T, Int)]): List[(T, String)] = {
     logger.debug(s"${list}")
 
-    val nodes = list.map { case (char, freq) => Node(Some(char), freq) }
-    val tree = huffmanTree(nodes)
-    val codes = huffmanCodes(tree)
-    logger.debug(s"Huffman codes: $codes")
-    codes
+    val nodesList = list.map { case (char, freq) => Node(Some(char), freq) }
+    val rootNode = buildHuffmanTree(nodesList)
+    buildHuffmanCodes(rootNode)
   }
 
-  private def huffmanTree[T](nodes: List[Node[T]]): Node[T] = {
+  /** @return the root node of the huffman tree. */
+  private def buildHuffmanTree[T](nodesList: List[Node[T]]): Node[T] = {
     import scala.collection.mutable
 
-    val queue = new mutable.PriorityQueue[Node[T]]()(Ordering.by(_.weight))
-    queue.enqueue(nodes*)
-
-    while (queue.size > 1) {
-      val left = queue.dequeue()
-      val right = queue.dequeue()
-      val parent = Node(None, left.weight + right.weight, Some(left), Some(right))
-      queue.enqueue(parent)
+    def buildHuffmanTreeRec[T](nodes: mutable.PriorityQueue[Node[T]], size: Int): Node[T] = size match {
+      case 1 => nodes.head
+      case _ => {
+        val left = nodes.dequeue()
+        val right = nodes.dequeue()
+        val parent = Node(None, left.weight + right.weight, Some(left), Some(right))
+        nodes.enqueue(parent)
+        buildHuffmanTreeRec(nodes, nodes.size)
+      }
     }
 
-    queue.dequeue()
+    val nodes = new mutable.PriorityQueue[Node[T]]()(Ordering.by(_.weight))
+    nodes.enqueue(nodesList*)
+
+    buildHuffmanTreeRec(nodes, nodes.size)
   }
 
-  private def huffmanCodes[T](tree: Node[T]): List[(T, String)] = {
-    def huffmanCodesRec(node: Node[T], code: String): List[(T, String)] = node match {
+  /** @return the list of huffman code for the given tree. */
+  private def buildHuffmanCodes[T](rootNode: Node[T]): List[(T, String)] = {
+    def buildHuffmanCodesRec(node: Node[T], code: String): List[(T, String)] = node match {
       case Node(Some(char), _, _, _) => List((char, code))
       case Node(None, _, Some(left), Some(right)) =>
-        huffmanCodesRec(left, code + "0") ++ huffmanCodesRec(right, code + "1")
+        buildHuffmanCodesRec(left, code + "0") ++ buildHuffmanCodesRec(right, code + "1")
       case _ => throw new RuntimeException("Unexpected case")
     }
 
-    huffmanCodesRec(tree, "")
+    buildHuffmanCodesRec(rootNode, "")
   }
 
   case class Node[T](char: Option[T], weight: Int, left: Option[Node[T]] = None, right: Option[Node[T]] = None)
