@@ -747,19 +747,77 @@ class P00Test extends munit.ScalaCheckSuite {
     assertEquals(result, expected)
   }
 
-  test("P50 - huffman with single element") {
+  test("P50 - single element") {
     val result = P50.huffman(List(('a', 10)))
     val expected = List(('a', ""))
     assertEquals(result, expected)
   }
-  
-  /*
-  test("P50 - huffman") {
+
+  test("P50 - two elements") {
+    val result = P50.huffman(List(('a', 10), ('b', 5)))
+    val expected = List(('b', "0"), ('a', "1"))
+    assertEquals(result, expected)
+  }
+
+  test("P50 - same frequencies") {
+    val result = P50.huffman(
+      List(('a', 1), ('b', 1), ('c', 1), ('d', 1))
+    )
+
+    val expected = List(
+      ('a', "11"),
+      ('b', "10"),
+      ('c', "01"),
+      ('d', "00")
+    )
+
+    assertEquals(result.sorted, expected)
+  }
+
+  test("P50 - varying frequencies") {
     val result = P50.huffman(
       List(('a', 45), ('b', 13), ('c', 12), ('d', 16), ('e', 9), ('f', 5))
     )
-    val expected = List(('a', "0"), ('b', "101"), ('c', "100"), ('d', "111"), ('e', "1101"), ('f', "1100")).sortBy(_._1)
-    assertEquals(result.sortBy(_._1), expected)
+
+    val expected = List(
+      ('a', "0"),
+      ('b', "101"),
+      ('c', "100"),
+      ('d', "111"),
+      ('e', "1101"),
+      ('f', "1100")
+    )
+
+    assertEquals(result.sorted, expected)
   }
-  */
+
+  test("P50 - with a large text") {
+    val result = P50.huffman("this is an example of a huffman tree")
+    val expected = List(
+      (' ', "111"),
+      ('a', "101"),
+      ('e', "100"),
+      ('f', "1101"),
+      ('h', "1100"),
+      ('i', "0111"),
+      ('l', "01001"),
+      ('m', "0110"),
+      ('n', "0101"),
+      ('o', "01000"),
+      ('p', "00111"),
+      ('r', "00110"),
+      ('s', "0010"),
+      ('t', "0001"),
+      ('u', "00001"),
+      ('x', "00000")
+    )
+
+    assertEquals(result.sorted, expected)
+  }
+
+  property("P50 - reverse text") {
+    forAll { (text: String) =>
+      assertEquals(P50.huffman(text), P50.huffman(text.reverse))
+    }
+  }
 }
