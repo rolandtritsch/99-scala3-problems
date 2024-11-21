@@ -755,11 +755,47 @@ class P00Test extends munit.ScalaCheckSuite {
     assertEquals(codes, expectedCodes)
   }
 
+  test("P50 - with equal frequencies") {
+    val freqs = Set(('a', 1), ('b', 1), ('c', 1), ('d', 1))
+    val tree = P50.huffman(freqs)
+    val codes = P50.encode(tree)
+    val expectedCodes = Set(('a', "00"), ('b', "01"), ('c', "10"), ('d', "11"))
+    assertEquals(codes, expectedCodes)
+  }
+
   test("P50 - with various frequencies") {
     val freqs = Set(('a', 45), ('b', 13), ('c', 12), ('d', 16), ('e', 9), ('f', 5))
     val tree = P50.huffman(freqs)
     val codes = P50.encode(tree)
     val expectedCodes = Set(('a', "0"), ('b', "101"), ('c', "100"), ('d', "111"), ('e', "1101"), ('f', "1100"))
+    assertEquals(codes, expectedCodes)
+  }
+
+  test("P50 - with a string") {
+    val text = "this is an example for huffman encoding".reverse
+    val tree = P50.huffman(text)
+    val codes = P50.encode(tree)
+    val expectedCodes = Set(
+      (' ', "101"),
+      ('a', "1001"),
+      ('c', "111110"),
+      ('d', "111111"),
+      ('e', "1100"),
+      ('f', "1101"),
+      ('g', "00010"),
+      ('h', "0000"),
+      ('i', "1110"),
+      ('l', "00011"),
+      ('m', "0100"),
+      ('n', "001"),
+      ('o', "0101"),
+      ('p', "01100"),
+      ('r', "01101"),
+      ('s', "0111"),
+      ('t', "10000"),
+      ('u', "10001"),
+      ('x', "11110"),
+    )
     assertEquals(codes, expectedCodes)
   }
 }
