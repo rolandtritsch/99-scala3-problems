@@ -34,20 +34,22 @@ package ninetynine
 object P50 {
   val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
-  /** @return the list of huffman codes for the given text. */
-  def huffman(text: String): List[(Char, String)] = {
+  /** @return the set of huffman codes for the given text. */
+  def huffman(text: String): Set[(Char, String)] = {
     logger.debug(s"${text}")
 
-    val freqs = P09.pack(text.toList).map { l => (l.head, l.size) }
+    val freqs = P09.pack(text.toList).map {
+      groupedChars => (groupedChars.head, groupedChars.size)
+    }.toSet
     huffman(freqs)
   }
 
-  /** @return the list of huffman codes for the given frequencies. */
-  def huffman(freqs: List[(Char, Int)]): List[(Char, String)] = {
+  /** @return the set of huffman codes for the given frequencies. */
+  def huffman(freqs: Set[(Char, Int)]): Set[(Char, String)] = {
     require(freqs.forall { (_, f) => f > 0 }, "freqs.forall { (_, f) => f > 0 }")
     logger.info(s"${freqs}")
 
-    if (freqs.isEmpty) List()
+    if (freqs.isEmpty) Set()
     else {
       val nodesList = freqs.map { (c, freq) => Node(Some(c), c, freq) }
       val rootNode = buildHuffmanTree(nodesList)
@@ -56,7 +58,7 @@ object P50 {
   }
 
   /** @return the root node of the huffman tree. */
-  private def buildHuffmanTree(nodesList: List[Node]): Node = {
+  private def buildHuffmanTree(nodesInit: Set[Node]): Node = {
     import scala.collection.mutable
 
     def buildHuffmanTreeRec(nodes: mutable.PriorityQueue[Node]): Node = nodes.size match {
@@ -73,15 +75,15 @@ object P50 {
     val nodes = new mutable.PriorityQueue[Node]()(Ordering.by {
       n => (-n.weight, n.maxChar)
     })
-    nodes.enqueue(nodesList*)
+    nodesInit.foreach(nodes.enqueue(_))
 
     buildHuffmanTreeRec(nodes)
   }
 
   /** @return the list of huffman code for the given tree. */
-  private def buildHuffmanCodes(rootNode: Node): List[(Char, String)] = {
-    def buildHuffmanCodesRec(node: Node, code: String): List[(Char, String)] = node match {
-      case Node(Some(e), _, _, _, _) => List((e, code))
+  private def buildHuffmanCodes(rootNode: Node): Set[(Char, String)] = {
+    def buildHuffmanCodesRec(node: Node, code: String): Set[(Char, String)] = node match {
+      case Node(Some(e), _, _, _, _) => Set((e, code))
       case Node(None, _, _, Some(left), Some(right)) =>
         buildHuffmanCodesRec(left, code + "0") ++ buildHuffmanCodesRec(right, code + "1")
       case _ => throw new RuntimeException("Unexpected case")

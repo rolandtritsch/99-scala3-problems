@@ -748,52 +748,52 @@ class P00Test extends munit.ScalaCheckSuite {
   }
 
   test("P50 - single element") {
-    val result = P50.huffman(List(('a', 10)))
-    val expected = List(('a', ""))
+    val result = P50.huffman(Set(('a', 10)))
+    val expected = Set(('a', ""))
     assertEquals(result, expected)
   }
 
   test("P50 - two elements") {
-    val result = P50.huffman(List(('a', 10), ('b', 5)))
-    val expected = List(('b', "0"), ('a', "1"))
+    val result = P50.huffman(Set(('a', 10), ('b', 5)))
+    val expected = Set(('b', "0"), ('a', "1"))
     assertEquals(result, expected)
   }
 
   test("P50 - same frequencies") {
     val result = P50.huffman(
-      List(('a', 1), ('b', 1), ('c', 1), ('d', 1))
+      Set(('a', 1), ('b', 1), ('c', 1), ('d', 1))
     )
 
-    val expected = List(
+    val expected = Set(
       ('a', "11"),
       ('b', "10"),
       ('c', "01"),
-      ('d', "00")
+      ('d', "00"),
     )
 
-    assertEquals(result.sorted, expected)
+    assertEquals(result, expected)
   }
 
   test("P50 - varying frequencies") {
     val result = P50.huffman(
-      List(('a', 45), ('b', 13), ('c', 12), ('d', 16), ('e', 9), ('f', 5))
+      Set(('a', 45), ('b', 13), ('c', 12), ('d', 16), ('e', 9), ('f', 5))
     )
 
-    val expected = List(
+    val expected = Set(
       ('a', "0"),
       ('b', "101"),
       ('c', "100"),
       ('d', "111"),
       ('e', "1101"),
-      ('f', "1100")
+      ('f', "1100"),
     )
 
-    assertEquals(result.sorted, expected)
+    assertEquals(result, expected)
   }
 
   test("P50 - with a large text") {
     val result = P50.huffman("this is an example of a huffman tree")
-    val expected = List(
+    val expected = Set(
       (' ', "111"),
       ('a', "101"),
       ('e', "100"),
@@ -809,10 +809,10 @@ class P00Test extends munit.ScalaCheckSuite {
       ('s', "0010"),
       ('t', "0001"),
       ('u', "00001"),
-      ('x', "00000")
+      ('x', "00000"),
     )
 
-    assertEquals(result.sorted, expected)
+    assertEquals(result, expected)
   }
 
   property("P50 - reverse text") {
