@@ -32,6 +32,8 @@ package ninetynine
   */
 
 object P50 {
+  case class Node[A](value: Option[A], maxValue: A, weight: Int, left: Option[Node[A]] = None, right: Option[Node[A]] = None)
+
   val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the set of huffman codes for the given text. */
@@ -45,8 +47,9 @@ object P50 {
   }
 
   /** @return the set of huffman codes for the given frequencies. */
-  def huffman(freqs: Set[(Char, Int)]): Set[(Char, String)] = {
-    require(freqs.forall { (_, f) => f > 0 }, "freqs.forall { (_, f) => f > 0 }")
+  def huffman[A: Ordering](freqs: Set[(A, Int)]): Set[(A, String)] = {
+    require(freqs.forall(_._2 > 0), "freqs.forall(_._2 > 0)")
+    require(freqs.map(_._1).size == freqs.size, "freqs.map(_._1).size == freqs.size")
     logger.info(s"${freqs}")
 
     if (freqs.isEmpty) Set()
@@ -58,22 +61,26 @@ object P50 {
   }
 
   /** @return the root node of the huffman tree. */
-  private def buildHuffmanTree(nodesInit: Set[Node]): Node = {
+  private def buildHuffmanTree[A: Ordering](nodesInit: Set[Node[A]]): Node[A] = {
     import scala.collection.mutable
 
-    def buildHuffmanTreeRec(nodes: mutable.PriorityQueue[Node]): Node = nodes.size match {
+    def max[A](x: A, y: A)(implicit ord: Ordering[A]): A = {
+      if (ord.gt(x, y)) x else y
+    }
+
+    def buildHuffmanTreeRec[A: Ordering](nodes: mutable.PriorityQueue[Node[A]]): Node[A] = nodes.size match {
       case 1 => nodes.head
       case _ => {
         val left = nodes.dequeue()
         val right = nodes.dequeue()
-        val parent = Node(None, left.maxChar.max(right.maxChar), left.weight + right.weight, Some(left), Some(right))
+        val parent = Node(None, max(left.maxValue, right.maxValue), left.weight + right.weight, Some(left), Some(right))
         nodes.enqueue(parent)
         buildHuffmanTreeRec(nodes)
       }
     }
 
-    val nodes = new mutable.PriorityQueue[Node]()(Ordering.by {
-      n => (-n.weight, n.maxChar)
+    val nodes = new mutable.PriorityQueue[Node[A]]()(Ordering.by {
+      n => (-n.weight, n.maxValue)
     })
     nodesInit.foreach(nodes.enqueue(_))
 
@@ -81,8 +88,8 @@ object P50 {
   }
 
   /** @return the list of huffman code for the given tree. */
-  private def buildHuffmanCodes(rootNode: Node): Set[(Char, String)] = {
-    def buildHuffmanCodesRec(node: Node, code: String): Set[(Char, String)] = node match {
+  private def buildHuffmanCodes[A](rootNode: Node[A]): Set[(A, String)] = {
+    def buildHuffmanCodesRec[A](node: Node[A], code: String): Set[(A, String)] = node match {
       case Node(Some(e), _, _, _, _) => Set((e, code))
       case Node(None, _, _, Some(left), Some(right)) =>
         buildHuffmanCodesRec(left, code + "0") ++ buildHuffmanCodesRec(right, code + "1")
@@ -91,6 +98,4 @@ object P50 {
 
     buildHuffmanCodesRec(rootNode, "")
   }
-
-  case class Node(char: Option[Char], maxChar: Char, weight: Int, left: Option[Node] = None, right: Option[Node] = None)
 }
