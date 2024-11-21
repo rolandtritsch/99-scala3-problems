@@ -746,4 +746,63 @@ class P00Test extends munit.ScalaCheckSuite {
     )
     assertEquals(result, expected)
   }
+
+  test("P50 - with one element") {
+    val result = P50.huffman(Set(('a', 1)))
+    val expected = Set(('a', ""))
+    assertEquals(result, expected)
+  }
+
+  test("P50 - with two elements") {
+    val result = P50.huffman(Set(('a', 1), ('b', 1)))
+    val expected = Set(('a', "0"), ('b', "1"))
+    assertEquals(result, expected)
+  }
+
+  test("P50 - with elements with the same frequency") {
+    val result = P50.huffman(Set(('a', 1), ('b', 1), ('c', 1), ('d', 1)))
+    val expected = Set(('a', "00"), ('b', "10"), ('c', "01"), ('d', "11"))
+    assertEquals(result, expected)
+  }
+
+  test("P50 - with various frequencies") {
+    val result = P50.huffman(Set(('a', 45), ('b', 13), ('c', 12), ('d', 16), ('e', 9), ('f', 5)))
+    val expected = Set(('a', "0"), ('b', "101"), ('c', "001"), ('d', "111"), ('e', "1011"), ('f', "0011"))
+    assertEquals(result, expected)
+  }
+
+  test("P50 - with a string") {
+    val result = P50.huffman("abracadabra")
+    val expected = Set(('a', "0"), ('b', "011"), ('c', "0111"), ('d', "1111"), ('r', "01"))
+    assertEquals(result, expected)
+  }
+
+  test("P50 - with THE string") {
+    val result = P50.huffman("this is an example of a huffman tree")
+    val expected = Set(
+      (' ', "111"),
+      ('a', "000"),
+      ('e', "100"),
+      ('f', "1011"),
+      ('h', "0010"), 
+      ('i', "1010"),
+      ('l', "00110"),
+      ('m', "1110"), 
+      ('n', "0001"), 
+      ('o', "10110"),
+      ('p', "01001"),
+      ('r', "11001"),
+      ('s', "0101"),
+      ('t', "1101"),
+      ('u', "00011"), 
+      ('x', "10011"),
+    )
+    assertEquals(result, expected)
+  }
+
+  property("P50 - various strings") {
+    forAll { (text: String) => {
+      assertEquals(P50.huffman(text), P50.huffman(text.reverse))
+    }}
+  }
 }
