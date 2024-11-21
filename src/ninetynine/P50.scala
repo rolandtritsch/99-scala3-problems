@@ -10,7 +10,7 @@ object P50 {
     case Internal(_, _, w) => w
   }
 
-  def huffman(freqs: List[(Char, Int)]): Node = {
+  def huffman(freqs: Set[(Char, Int)]): Node = {
     def combine(nodes: List[Node]): List[Node] = nodes match {
       case left :: right :: rest =>
         val combined = Internal(left, right, weight(left) + weight(right))
@@ -23,13 +23,13 @@ object P50 {
       case _ => untilSingle(combine(nodes))
     }
 
-    val initialNodes = freqs.map { case (symbol, weight) => Leaf(symbol, weight) }
+    val initialNodes = freqs.map { case (symbol, weight) => Leaf(symbol, weight) }.toList
     untilSingle(initialNodes.sortBy(weight))
   }
 
-  def encode(tree: Node): Map[Char, String] = {
-    def loop(node: Node, prefix: String): Map[Char, String] = node match {
-      case Leaf(symbol, _) => Map(symbol -> prefix)
+  def encode(tree: Node): Set[(Char, String)] = {
+    def loop(node: Node, prefix: String): Set[(Char, String)] = node match {
+      case Leaf(symbol, _) => Set((symbol, prefix))
       case Internal(left, right, _) =>
         loop(left, prefix + "0") ++ loop(right, prefix + "1")
     }
