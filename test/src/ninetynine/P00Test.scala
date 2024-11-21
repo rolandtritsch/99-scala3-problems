@@ -746,4 +746,12 @@ class P00Test extends munit.ScalaCheckSuite {
     )
     assertEquals(result, expected)
   }
+
+  test("P50 - huffman") {
+    val freqs = List(('a', 45), ('b', 13), ('c', 12), ('d', 16), ('e', 9), ('f', 5))
+    val tree = P50.huffman(freqs)
+    val codes = P50.encode(tree)
+    val expectedCodes = Map('a' -> "0", 'b' -> "101", 'c' -> "100", 'd' -> "111", 'e' -> "1101", 'f' -> "1100")
+    assertEquals(codes, expectedCodes)
+  }
 }
