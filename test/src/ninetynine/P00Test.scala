@@ -6,6 +6,7 @@ import scala.util.Random
 class P00Test extends munit.ScalaCheckSuite {
   val ignore = new munit.Tag("ignore")
 
+  // property("P01 - last".tag(ignore)) {
   property("P01 - last") {
     val result = P01.last(List("first", "last"))
     val expected = "last"
@@ -283,7 +284,6 @@ class P00Test extends munit.ScalaCheckSuite {
     assertEquals(result, expected)
   }
 
-  // property("P22 - range".tag(ignore)) {
   property("P22 - range") {
     val result = P22.range(4, 9)
     val expected = List(4, 5, 6, 7, 8, 9)
@@ -724,7 +724,7 @@ class P00Test extends munit.ScalaCheckSuite {
     assertEquals(result, expected)
   }
 
-  test("P49 - gray(4)".tag(ignore)) {
+  test("P49 - gray(4)") {
     val result = P49.gray(4)
     val expected = List(
       "0000",
