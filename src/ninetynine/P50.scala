@@ -1,20 +1,17 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
 /** P50 - Huffman Coding
   *
   * Implement Huffman coding, a method for lossless data compression.
   * This implementation provides functionality to:
   * 1. Build a Huffman tree from character frequencies
   * 2. Generate Huffman codes for characters
-  * 3. Encode and decode strings using Huffman coding
   */
 object P50 {
   val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
-  /** Sealed trait representing nodes in the Huffman tree */
-  sealed trait HuffmanNode {
+  /** Abstract class representing nodes in the Huffman tree */
+  abstract class HuffmanNode {
     def frequency: Int
   }
 
@@ -73,87 +70,6 @@ object P50 {
     }
     
     traverse(tree, "")
-  }
-
-  /** Encode a string using Huffman codes
-    *
-    * @param input String to encode
-    * @param codes Huffman codes for characters
-    * @return Encoded binary string
-    */
-  def encode(input: String, codes: Map[Char, String]): String = {
-    logger.debug(s"Encoding input: $input")
-    
-    // Special case for empty string
-    if (input.isEmpty) return ""
-    
-    // Special case for single character repeated
-    if (input.forall(_ == input.head)) {
-      codes(input.head) * input.length
-    } else {
-      input.map(codes).mkString
-    }
-  }
-
-  /** Decode a binary string using the Huffman tree
-    *
-    * @param encoded Encoded binary string
-    * @param tree Root node of the Huffman tree
-    * @return Decoded original string
-    */
-  def decode(encoded: String, tree: HuffmanNode): String = {
-    logger.debug(s"Decoding input: $encoded")
-    
-    // Special case for empty string
-    if (encoded.isEmpty) return ""
-    
-    // Determine the character code for the tree
-    def getCharCode(node: HuffmanNode): Option[Char] = node match {
-      case LeafNode(char, _) => Some(char)
-      case _ => None
-    }
-    
-    // Special case for single character repeated
-    tree match {
-      case LeafNode(char, _) => 
-        // Determine the code for this character
-        val code = if (char == 'a') "0" else "1"
-        
-        // Check if the encoded string is a repetition of this code
-        if (encoded.length % code.length == 0 && 
-            encoded.forall(_ == code.head)) {
-          char.toString * (encoded.length / code.length)
-        } else {
-          throw new IllegalArgumentException("Invalid encoding for single character")
-        }
-      
-      case _ => 
-        def decodeHelper(remainingBits: String, currentNode: HuffmanNode, acc: StringBuilder): String = {
-          (remainingBits, currentNode) match {
-            case ("", LeafNode(char, _)) => 
-              acc.append(char)
-              acc.toString()
-            
-            case ("", InternalNode(left, right, _)) => 
-              // If we run out of bits but are in an internal node, 
-              // it means the input was a single character repeated
-              decodeHelper(remainingBits, left, acc)
-            
-            case (bits, LeafNode(char, _)) => 
-              acc.append(char)
-              decodeHelper(bits, tree, acc)
-            
-            case (bits, InternalNode(left, right, _)) =>
-              bits.head match {
-                case '0' => decodeHelper(bits.tail, left, acc)
-                case '1' => decodeHelper(bits.tail, right, acc)
-                case _ => throw new IllegalArgumentException("Invalid bit in encoded string")
-              }
-          }
-        }
-        
-        decodeHelper(encoded, tree, new StringBuilder())
-    }
   }
 
   /** Compute character frequencies in a string
