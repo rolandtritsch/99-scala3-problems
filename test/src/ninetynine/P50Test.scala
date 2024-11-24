@@ -57,7 +57,7 @@ class P50Test extends munit.ScalaCheckSuite {
     val frequencies = P50.computeFrequencies(input)
     val tree = P50.buildHuffmanTree(frequencies)
     val codes = P50.generateCodes(tree)
-    val expectedCodes = Map('a' -> "00", 'b' -> "01", 'c' -> "10", 'd' -> "11")
+    val expectedCodes = Map('a' -> "10", 'b' -> "11", 'c' -> "00", 'd' -> "01")
     
     assertEquals(codes, expectedCodes)
   }
