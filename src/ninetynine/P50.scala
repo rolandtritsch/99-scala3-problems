@@ -14,21 +14,15 @@ object P50 {
 
   /** Abstract class representing nodes in the Huffman tree */
   abstract class HuffmanNode[A] {
-    def frequency: Int
-    def value: A
+    val frequency: Int
+    val value: A
   }
 
   /** Leaf node representing a value with its frequency */
-  case class LeafNode[A](leafValue: A, leafFrequency: Int, thisValue: A) extends HuffmanNode[A] {
-    def frequency: Int = leafFrequency
-    def value: A = thisValue
-  }
+  case class LeafNode[A](override val frequency: Int, override val value: A) extends HuffmanNode[A]
 
   /** Internal node representing a branch in the Huffman tree */
-  case class InternalNode[A](left: HuffmanNode[A], right: HuffmanNode[A], internalFrequency: Int, thisValue: A) extends HuffmanNode[A] {
-    def frequency: Int = internalFrequency
-    def value: A = thisValue
-  }
+  case class InternalNode[A](left: HuffmanNode[A], right: HuffmanNode[A], override val frequency: Int, override val value: A) extends HuffmanNode[A]
 
   /** @return map of Huffman codes for given string */
   def huffman(input: String): Map[Char, String] = {
@@ -67,7 +61,7 @@ object P50 {
     }
 
     // Convert frequencies to leaf nodes and build the tree
-    val nodes = frequencies.map { (value, freq) => LeafNode(value, freq, value) }.toList
+    val nodes = frequencies.map { (value, freq) => LeafNode(freq, value) }.toList
 
     // Special case for single character input
     nodes match {
@@ -85,14 +79,13 @@ object P50 {
     logger.debug(s"${tree}")
     
     def traverse(node: HuffmanNode[A], currentCode: String): Map[A, String] = node match {
-      case LeafNode(value, _, _) => 
+      case LeafNode(_, value) => 
         // For single character case, return empty string as code
         if (currentCode.isEmpty) Map(value -> "")
         else Map(value -> currentCode)
       case InternalNode(left, right, _, _) => 
         // Assign '0' to the left node and '1' to the right node
-        traverse(left, "0" + currentCode) ++ 
-        traverse(right, "1" + currentCode)
+        traverse(left, "0" + currentCode) ++ traverse(right, "1" + currentCode)
     }
     
     traverse(tree, "")
