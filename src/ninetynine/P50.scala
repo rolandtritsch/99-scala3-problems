@@ -11,42 +11,49 @@ object P50 {
   val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** Abstract class representing nodes in the Huffman tree */
-  abstract class HuffmanNode {
+  abstract class HuffmanNode[A] {
     def frequency: Int
-    def char: Option[Char]  // Added to help with sorting
+    def value: Option[A]  // Renamed from char to value for generic type
   }
 
-  /** Leaf node representing a character with its frequency */
-  case class LeafNode(c: Char, frequency: Int) extends HuffmanNode {
-    def char: Option[Char] = Some(c)
+  /** Leaf node representing a value with its frequency */
+  case class LeafNode[A](v: A, frequency: Int) extends HuffmanNode[A] {
+    def value: Option[A] = Some(v)
   }
 
   /** Internal node representing a branch in the Huffman tree */
-  case class InternalNode(left: HuffmanNode, right: HuffmanNode, frequency: Int) extends HuffmanNode {
-    def char: Option[Char] = None
+  case class InternalNode[A](left: HuffmanNode[A], right: HuffmanNode[A], frequency: Int) extends HuffmanNode[A] {
+    def value: Option[A] = None
   }
 
-  /** Build a Huffman tree from character frequencies
+  /** Build a Huffman tree from frequencies
     *
-    * @param frequencies Map of characters and their frequencies
+    * @param frequencies Map of values and their frequencies
     * @return Root node of the Huffman tree
     */
-  def buildHuffmanTree(frequencies: Map[Char, Int]): HuffmanNode = {
+  def buildHuffmanTree[A: Ordering](frequencies: Map[A, Int]): HuffmanNode[A] = {
     require(frequencies.nonEmpty, "frequencies.nonEmpty")
     logger.debug(s"Building Huffman tree for frequencies: $frequencies")
     
     // Convert frequencies to leaf nodes
-    def buildTree(nodes: List[HuffmanNode]): HuffmanNode = {
+    def buildTree(nodes: List[HuffmanNode[A]]): HuffmanNode[A] = {
       if (nodes.size <= 1) nodes.head
       else {
-        // Sort nodes by frequency and then by character (for consistent ordering)
-        val sortedNodes = nodes.sortBy(n => (n.frequency, n.char.getOrElse(Char.MaxValue)))
+        // Sort nodes by frequency first, then by ASCII value for characters
+        val sortedNodes = nodes.sortBy(n => (
+          n.frequency,
+          n match {
+            case LeafNode(v: Char, _) => v.toInt
+            case LeafNode(v, _) => v.toString.hashCode
+            case _ => Int.MaxValue  // Internal nodes come last
+          }
+        ))
         
         // Take two least frequent nodes
         val first = sortedNodes.head
         val second = sortedNodes(1)
         
-        // Create a new internal node
+        // Create a new internal node, keeping original order
         val combinedNode = InternalNode(first, second, first.frequency + second.frequency)
         
         // Recursively build the tree
@@ -56,7 +63,7 @@ object P50 {
 
     // Convert frequencies to leaf nodes and build the tree
     val nodes = frequencies.map { 
-      case (char, freq) => LeafNode(char, freq) 
+      case (value, freq) => LeafNode(value, freq) 
     }.toList
 
     // Special case for single character input
@@ -66,20 +73,21 @@ object P50 {
     }
   }
 
-  /** Generate Huffman codes for characters
+  /** Generate Huffman codes for values
     *
     * @param tree Root node of the Huffman tree
-    * @return Map of characters to their Huffman codes
+    * @return Map of values to their Huffman codes
     */
-  def generateCodes(tree: HuffmanNode): Map[Char, String] = {
+  def generateCodes[A](tree: HuffmanNode[A]): Map[A, String] = {
     logger.debug("Generating Huffman codes")
     
-    def traverse(node: HuffmanNode, currentCode: String): Map[Char, String] = node match {
-      case LeafNode(char, _) => 
+    def traverse(node: HuffmanNode[A], currentCode: String): Map[A, String] = node match {
+      case LeafNode(value, _) => 
         // For single character case, return empty string as code
-        if (currentCode.isEmpty) Map(char -> "")
-        else Map(char -> currentCode)
+        if (currentCode.isEmpty) Map(value -> "")
+        else Map(value -> currentCode)
       case InternalNode(left, right, _) => 
+        // Assign '0' to the left node and '1' to the right node
         traverse(left, currentCode + "0") ++ 
         traverse(right, currentCode + "1")
     }
@@ -87,7 +95,7 @@ object P50 {
     traverse(tree, "")
   }
 
-  /** Compute character frequencies in a string
+  /** Compute frequencies in a string
     *
     * @param input Input string
     * @return Map of characters and their frequencies
