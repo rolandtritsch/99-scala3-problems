@@ -1,6 +1,5 @@
 package ninetynine
 
-
 class P50Test extends munit.ScalaCheckSuite {
   val ignore = new munit.Tag("ignore")
 
