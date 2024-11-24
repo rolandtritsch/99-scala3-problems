@@ -57,5 +57,5 @@ jobs:
           path: "./out/docJar.dest/javadoc"
 
       - name: Deploy to GitHub Pages
-        id: deployment
+        if: github.ref == 'refs/heads/trunk'
         uses: actions/deploy-pages@v2
