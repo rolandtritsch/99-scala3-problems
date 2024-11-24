@@ -50,6 +50,7 @@ class P50Test extends munit.ScalaCheckSuite {
     
     assertEquals(codes, expectedCodes)
   }
+
   test("P50 - Huffman Coding: Same Frequencies") {
     val input = "abcd"
     val frequencies = P50.computeFrequencies(input)
@@ -60,4 +61,30 @@ class P50Test extends munit.ScalaCheckSuite {
     assertEquals(codes, expectedCodes)
   }
 
+  test("P50 - Huffman Coding: THE text") {
+    val input = "this is an example of a huffman tree"
+    val frequencies = P50.computeFrequencies(input)
+    val tree = P50.buildHuffmanTree(frequencies)
+    val codes = P50.generateCodes(tree)
+    val expectedCodes = Map(
+      'e' -> "101",
+      'n' -> "0001",
+      't' -> "0111",
+      'a' -> "100",
+      'm' -> "0000",
+      'i' -> "0011",
+      ' ' -> "111",
+      'l' -> "11000",
+      'p' -> "01010",
+      'h' -> "0010",
+      'r' -> "01011",
+      'o' -> "11001",
+      's' -> "0110",
+      'x' -> "01001",
+      'u' -> "01000",
+      'f' -> "1101"
+    )
+    
+    assertEquals(codes, expectedCodes)
+  }
 }
