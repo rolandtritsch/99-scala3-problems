@@ -39,15 +39,21 @@ object P50 {
     def buildTree(nodes: List[HuffmanNode[A]]): HuffmanNode[A] = {
       if (nodes.size <= 1) nodes.head
       else {
-        // Sort nodes by frequency first, then by ASCII value for characters
+        // Sort nodes by frequency first, then by node type (leaf before internal), then by value
         val sortedNodes = nodes.sortBy(n => (
           n.frequency,
           n match {
-            case LeafNode(v: Char, _) => v.toInt
-            case LeafNode(v, _) => v.toString.hashCode
-            case _ => Int.MaxValue  // Internal nodes come last
-          }
-        ))
+            case LeafNode(_, _) => 0
+            case InternalNode(_, _, _) => 1
+          },
+          n.value
+        ))(
+          Ordering.Tuple3(
+            Ordering.Int,
+            Ordering.Int,
+            Ordering.Option(summon[Ordering[A]])
+          )
+        )
         
         // Take two least frequent nodes
         val first = sortedNodes.head
