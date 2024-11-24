@@ -32,4 +32,8 @@ object ninetynine extends RootModule with ScoverageModule with ScalafmtModule wi
       ivy"org.typelevel::spire:0.18.0"
     )
   }
+
+  object splitTests extends ScalaModule {
+    def scalaVersion = "3.3.1"
+  }
 }
