@@ -21,7 +21,7 @@ class P50Test extends munit.ScalaCheckSuite {
     val input = "hello world"
     val frequencies = P50.computeFrequencies(input)
     val tree = P50.buildHuffmanTree(frequencies)
-    val codes = P50.generateCodes(tree)
+    val codes = P50.generateHuffmanCodes(tree)
     
     assert(codes.contains('h'))
     assert(codes.contains('e'))
@@ -45,44 +45,38 @@ class P50Test extends munit.ScalaCheckSuite {
     val input = "aaaaa"
     val frequencies = P50.computeFrequencies(input)
     val tree = P50.buildHuffmanTree(frequencies)
-    val codes = P50.generateCodes(tree)
+    val codes = P50.generateHuffmanCodes(tree)
     val expectedCodes = Map('a' -> "")
     
     assertEquals(codes, expectedCodes)
   }
 
   test("P50 - Huffman Coding: Same Frequencies") {
-    val input = "abcd"
-    val frequencies = P50.computeFrequencies(input)
-    val tree = P50.buildHuffmanTree(frequencies)
-    val codes = P50.generateCodes(tree)
-    val expectedCodes = Map('a' -> "10", 'b' -> "11", 'c' -> "00", 'd' -> "01")
+    val codes = P50.huffman("abcd")
+    val expectedCodes = Map('a' -> "00", 'b' -> "10", 'c' -> "01", 'd' -> "11")
     
     assertEquals(codes, expectedCodes)
   }
 
   test("P50 - Huffman Coding: THE text") {
-    val input = "this is an example of a huffman tree"
-    val frequencies = P50.computeFrequencies(input)
-    val tree = P50.buildHuffmanTree(frequencies)
-    val codes = P50.generateCodes(tree)
+    val codes = P50.huffman("this is an example of a huffman tree")
     val expectedCodes = Map(
-      'e' -> "101",
-      'n' -> "0001",
-      't' -> "0111",
-      'a' -> "100",
-      'm' -> "0000",
-      'i' -> "0011",
+      'e' -> "100",
+      'n' -> "1110",
+      't' -> "1101",
+      'a' -> "000",
+      'm' -> "0110",
+      'i' -> "1010",
       ' ' -> "111",
-      'l' -> "11000",
-      'p' -> "01010",
+      'l' -> "00001",
+      'p' -> "01001",
       'h' -> "0010",
-      'r' -> "01011",
-      'o' -> "11001",
-      's' -> "0110",
-      'x' -> "01001",
-      'u' -> "01000",
-      'f' -> "1101"
+      'r' -> "11001",
+      'o' -> "10001",
+      's' -> "0101",
+      'x' -> "10011",
+      'u' -> "00011",
+      'f' -> "1011"
     )
     
     assertEquals(codes, expectedCodes)
