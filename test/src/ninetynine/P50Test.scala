@@ -37,11 +37,9 @@ class P50Test extends munit.ScalaCheckSuite {
     val frequencies = P50.computeFrequencies(input)
     
     assert(frequencies.isEmpty)
-
-    val tree = P50.buildHuffmanTree(frequencies)
-    val codes = P50.generateCodes(tree)
-    
-    assertEquals(codes, Map.empty)
+    intercept[IllegalArgumentException] {
+      P50.buildHuffmanTree(frequencies)
+    }
   }
   test("P50 - Huffman Coding: Single Character") {
     val input = "aaaaa"

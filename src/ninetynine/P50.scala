@@ -32,12 +32,9 @@ object P50 {
     * @return Root node of the Huffman tree
     */
   def buildHuffmanTree(frequencies: Map[Char, Int]): HuffmanNode = {
+    require(frequencies.nonEmpty, "frequencies.nonEmpty")
     logger.debug(s"Building Huffman tree for frequencies: $frequencies")
     
-    if (frequencies.isEmpty) {
-      throw new IllegalArgumentException("Cannot build Huffman tree from empty frequencies")
-    }
-
     // Convert frequencies to leaf nodes
     def buildTree(nodes: List[HuffmanNode]): HuffmanNode = {
       if (nodes.size <= 1) nodes.head
@@ -63,10 +60,9 @@ object P50 {
     }.toList
 
     // Special case for single character input
-    if (nodes.size == 1) {
-      nodes.head
-    } else {
-      buildTree(nodes)
+    nodes.size match {
+      case 1 => nodes.head
+      case _ => buildTree(nodes)
     }
   }
 
@@ -88,11 +84,7 @@ object P50 {
         traverse(right, currentCode + "1")
     }
     
-    try {
-      traverse(tree, "")
-    } catch {
-      case _: IllegalArgumentException => Map.empty[Char, String]
-    }
+    traverse(tree, "")
   }
 
   /** Compute character frequencies in a string
