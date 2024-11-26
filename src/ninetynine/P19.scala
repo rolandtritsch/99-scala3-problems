@@ -11,11 +11,13 @@ object P19 {
   def rotate[A](n: Int, l: List[A]): List[A] = {
     logger.debug(s"${n} - ${l}")
 
-    def rotateOnce(l: List[A]): List[A] = l.tail ++ List(l.head)
+    def rotateClockwise(l: List[A]): List[A] = l.tail ++ List(l.head)
+    def rotateCounterClockwise(l: List[A]): List[A] = List(l.last) ++ l.init
 
     n match {
       case 0 => l
-      case _ => rotate(n - 1, rotateOnce(l))
+      case _ if n > 0 => rotate(n - 1, rotateClockwise(l))
+      case _ if n < 0 => rotate(n + 1, rotateCounterClockwise(l))
     }
   }
 }

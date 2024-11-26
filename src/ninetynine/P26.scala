@@ -15,27 +15,12 @@ object P26 {
     * @return the generated list of combinations
     */
   def combinations[A](k: Int, l: List[A]): List[List[A]] = {
-    logger.debug(s"${k} - ${l}")
-
-    combinations(k, l, List[A]())
-  }
-
-  private def combinations[A](k: Int, tail: List[A], head: List[A]): List[List[A]] = {
-    require(k >= 1, "k >= 1")
-    require(!tail.isEmpty, "!tail.isEmpty")
-
-    // Just build the combinations of the head and the remaining
-    // elements.
-    if(k == 1) for(e <- tail) yield head :+ e
-
-    // otherwise remove another element from whats left over, add it
-    // to the head and do it again.
+    if (k == 0) List(List())
+    else if (l.isEmpty) List()
     else {
-      var result = List[List[A]]()
-      for(i <- 0 until tail.size) {
-        result = result ++ combinations(k - 1, removeAtIndex(i, tail), head :+ tail(i))
-      }
-      result
+      // Take the first element and combine it with all combinations of k-1 elements from the rest
+      // Or skip the first element and find all combinations of k elements from the rest
+      combinations(k - 1, l.tail).map(l.head :: _) ++ combinations(k, l.tail)
     }
   }
 
