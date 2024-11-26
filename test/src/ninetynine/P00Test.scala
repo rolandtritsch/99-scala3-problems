@@ -795,4 +795,12 @@ class P00Test extends munit.ScalaCheckSuite {
     )
     assertEquals(obtained, expected)
   }
+
+  property("P50 - reverse text gives some codes") {
+    forAll { (text: String) =>
+      val obtained = P50.huffman(text)
+      val expected = P50.huffman(text.reverse)
+      assertEquals(obtained, expected)
+    }
+  }
 }
