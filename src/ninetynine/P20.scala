@@ -12,10 +12,11 @@ object P20 {
     require(!l.isEmpty, "!l.isEmpty")
     logger.debug(s"${n} - ${l}")
 
-    (l.zipWithIndex.foldLeft(List[A]()) { (ll, e) => {
+    val removed = l.zipWithIndex.foldLeft(List[A]()) { (ll, e) => {
       val (ee, ii) = e
       if (n == ii) ll
       else ll ++ List(ee)
-    }}, l(n))
+    }}
+    (removed, l(n))
   }
 }
