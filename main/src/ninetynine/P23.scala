@@ -1,7 +1,8 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
 import scala.util.Random
+
+import com.typesafe.scalalogging.Logger
 
 /** P23 - extract a given number of randomly selected elements from a list.
   */
