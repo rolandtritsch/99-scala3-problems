@@ -3,29 +3,30 @@ package ninetynine
 /** P11 - modified run-length encoding.
   */
 
-object P11 {
+object P11:
   val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return run-length encoded list */
-  def encode[A](l: List[A]): List[Any] = {
+  def encode[A](l: List[A]): List[Any] =
     logger.debug(s"${l}")
 
     @annotation.tailrec
-    def encode(l: List[A], el: List[Any], ec: (Int, A)): List[Any] = {
+    def encode(l: List[A], el: List[Any], ec: (Int, A)): List[Any] =
       logger.debug(s"${l}")
 
-      l match {
+      l match
         case Nil if ec._1 == 1       => el ++ List(ec._2)
         case Nil                     => el ++ List(ec)
         case e :: rest if e == ec._2 => encode(rest, el, (ec._1 + 1, ec._2))
         case e :: rest if ec._1 == 1 => encode(rest, el ++ List(ec._2), (1, e))
         case e :: rest               => encode(rest, el ++ List(ec), (1, e))
-      }
-    }
+      end match
+    end encode
 
-    l match {
+    l match
       case Nil => List[A]()
       case _   => encode(l.tail, List(), (1, l.head))
-    }
-  }
-}
+
+  end encode
+
+end P11

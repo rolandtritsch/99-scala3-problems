@@ -3,15 +3,17 @@ package ninetynine
 /** P21 - insert an element at a given position into a list.
   */
 
-object P21 {
+object P21:
   val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return a new list with e inserted at position n into l */
-  def insertAt[A](e: A, n: Int, l: List[A]): List[A] = {
+  def insertAt[A](e: A, n: Int, l: List[A]): List[A] =
     require(n >= 0 && n <= l.size, "n >= 0 && n <= l.size")
     logger.debug(s"${e} - ${n} - ${l}")
 
     val (head, tail) = l.splitAt(n)
     head ++ List(e) ++ tail
-  }
-}
+
+  end insertAt
+
+end P21

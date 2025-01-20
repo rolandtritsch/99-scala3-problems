@@ -3,7 +3,7 @@ package ninetynine
 /** P01 - find the last element of the list.
   */
 
-object P01 {
+object P01:
   val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** Do a recursive pattern match to find last element of a list.
@@ -24,17 +24,18 @@ object P01 {
     *   nothing
     */
   @annotation.tailrec
-  def last[A](l: List[A]): A = {
+  def last[A](l: List[A]): A =
     require(!l.isEmpty, "!l.isEmpty")
     logger.debug(s"${l}")
 
-    l match {
+    l match
       case e :: Nil  => e
       case _ :: rest => last(rest)
       case _         => throw new RuntimeException("Unexpected case")
-    }
-  }
+
+  end last
 
   /** @deprecated("this method is deprecated", "0.1.0") */
   def last_[A](l: List[A]): A = l.last
-}
+
+end P01

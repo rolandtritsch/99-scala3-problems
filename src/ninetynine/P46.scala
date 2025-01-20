@@ -2,11 +2,10 @@ package ninetynine
 
 /** P46 - Truth tables for logical expressions.
   *
-  * Define functions for basic logical operations 
-  * and generate truth tables for these operations.
+  * Define functions for basic logical operations and generate truth tables for these operations.
   */
 
-object P46 {
+object P46:
   val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   def and(a: Boolean, b: Boolean): Boolean = a && b
@@ -18,12 +17,11 @@ object P46 {
   def equ(a: Boolean, b: Boolean): Boolean = a == b
 
   /** @return a list of truth tables */
-  def table(f: (Boolean, Boolean) => Boolean): List[(Boolean, Boolean, Boolean)] = {
-    List(
-      (true, true, f(true, true)),
-      (true, false, f(true, false)),
-      (false, true, f(false, true)),
-      (false, false, f(false, false))
-    )
-  }
-}
+  def table(f: (Boolean, Boolean) => Boolean): List[(Boolean, Boolean, Boolean)] = List(
+    (true, true, f(true, true)),
+    (true, false, f(true, false)),
+    (false, true, f(false, true)),
+    (false, false, f(false, false)),
+  )
+
+end P46

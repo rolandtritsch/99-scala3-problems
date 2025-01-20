@@ -3,20 +3,19 @@ package ninetynine
 /** P04 - find the number of elements in the list.
   */
 
-object P04 {
+object P04:
   val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the size of the list l */
-  def size(l: List[Any]): Int = {
+  def size(l: List[Any]): Int =
     logger.debug(s"${l}")
 
     @annotation.tailrec
-    def size(l: List[Any], s: Int): Int = {
-      l match {
-        case Nil       => s
-        case _ :: rest => size(rest, s + 1)
-      }
-    }
+    def size(l: List[Any], s: Int): Int = l match
+      case Nil       => s
+      case _ :: rest => size(rest, s + 1)
     size(l, 0)
-  }
-}
+
+  end size
+
+end P04
