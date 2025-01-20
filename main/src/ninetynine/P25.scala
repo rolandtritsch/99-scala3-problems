@@ -1,8 +1,7 @@
 package ninetynine
 
-import scala.util.Random
-
 import com.typesafe.scalalogging.Logger
+import scala.util.Random
 
 /** P25 - generate a random permutation of the elements of a list.
   */
