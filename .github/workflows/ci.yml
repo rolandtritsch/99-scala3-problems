@@ -21,7 +21,7 @@ jobs:
 
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
 
     steps:
       - name: Checkout current branch (full)
@@ -37,14 +37,17 @@ jobs:
 
       - uses: coursier/cache-action@v6
 
-      - name: Run all tests
-        run: ./mill test
-
-      - name: Generate html scoverage report
-        run: ./mill scoverage.htmlReport && mv ./out/scoverage/htmlReport.dest ./docs/_docs/scoverage
+      - name: Run all tests (but the excluded ones)
+        run: ./mill main.test.testCached
 
       - name: Generate html docs
-        run: ./mill docJar
+        run: ./mill main.docJar
+
+      - name: Generate html scoverage report
+        run: | 
+          ./mill main.__.scoverage.htmlReport
+          mv ./out/main/scoverage/htmlReport.dest \
+             ./out/main/docJar.dest/javadoc/scoverage
 
       - name: Setup pages
         if: github.ref == 'refs/heads/trunk'
