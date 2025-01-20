@@ -1,0 +1,7 @@
+#! /bin/bash
+set -e # exit on failure
+
+./mill main.reformat && [[ -z $(git status --porcelain) ]]
+./mill main.test.reformat && [[ -z $(git status --porcelain) ]]
+./mill main.fix && [[ -z $(git status --porcelain) ]]
+./mill main.test.fix && [[ -z $(git status --porcelain) ]]

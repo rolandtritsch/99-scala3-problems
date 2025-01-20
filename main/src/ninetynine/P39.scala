@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P39 - A list of prime numbers.
   */
 
 object P39:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return List of prime numbers in the given range. */
   def listPrimesInRange(range: Range): List[Int] =

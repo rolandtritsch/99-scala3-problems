@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P28 - Sorting a list of lists according to length of sublists.
   */
 
 object P28:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return l sorted by the length of the lists */
   def lsort[A](l: List[List[A]]): List[List[A]] =
@@ -30,7 +32,7 @@ object P28:
 
     val groupedBySize = l.groupBy(_.size).values.toList
     val groupedByFreq = groupedBySize.groupBy(_.size).values.toList
-    groupedByFreq.map(_.flatten).map(_.sorted).flatten
+    groupedByFreq.map(_.flatten).flatMap(_.sorted)
 
   end lsortFreq
 

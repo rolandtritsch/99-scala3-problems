@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P15 - duplicate the elements of a list a given number of times.
   */
 
 object P15:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   def duplicate[A](n: Int, l: List[A]): List[A] =
     logger.debug(s"${l}")

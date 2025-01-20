@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P35 Determine the prime factors of a given positive integer.
   */
 
 object P35:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return a flat list containing the prime factors in ascending order. */
   def primeFactors(n: Int): List[Int] =

@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P41 - A list of Goldbach compositions.
   */
 
 object P41:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return a list of Goldbach compositions */
   def goldbachList(r: Range): List[(Int, Int)] =
@@ -12,7 +14,7 @@ object P41:
     require(r.end >= r.start && P40.isEven(r.end), "r.end >= r.start && isEven(r.end)")
     logger.debug(s"${r}")
 
-    r.filter(x => P40.isEven(x)).map(P40.goldbach).toList
+    r.withFilter(P40.isEven).map(P40.goldbach).toList
 
   end goldbachList
 

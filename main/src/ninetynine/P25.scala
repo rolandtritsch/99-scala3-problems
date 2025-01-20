@@ -2,11 +2,13 @@ package ninetynine
 
 import scala.util.Random
 
+import com.typesafe.scalalogging.Logger
+
 /** P25 - generate a random permutation of the elements of a list.
   */
 
 object P25:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return a random shuffle of list l */
   def randomPermute[A](l: List[A]): List[A] =

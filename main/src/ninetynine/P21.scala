@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P21 - insert an element at a given position into a list.
   */
 
 object P21:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return a new list with e inserted at position n into l */
   def insertAt[A](e: A, n: Int, l: List[A]): List[A] =

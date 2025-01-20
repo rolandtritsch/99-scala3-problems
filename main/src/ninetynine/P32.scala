@@ -1,5 +1,7 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P32 - Determine the greatest common divisor of two positive integer numbers.
   *
   * @note
@@ -7,7 +9,7 @@ package ninetynine
   */
 
 object P32:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the greatest common divisor. */
   def gcd(a: Int, b: Int): Int =

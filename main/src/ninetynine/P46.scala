@@ -1,12 +1,14 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P46 - Truth tables for logical expressions.
   *
   * Define functions for basic logical operations and generate truth tables for these operations.
   */
 
 object P46:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   def and(a: Boolean, b: Boolean): Boolean = a && b
   def or(a: Boolean, b: Boolean): Boolean = a || b

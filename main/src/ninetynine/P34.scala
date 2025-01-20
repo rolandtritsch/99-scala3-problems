@@ -1,11 +1,13 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P34 Calculate
   * [[https://en.wikipedia.org/wiki/Euler%27s_totient_function Euler's totient function]] phi(m).
   */
 
 object P34:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return Eulers totient for n */
   def totient(n: Int): Int =

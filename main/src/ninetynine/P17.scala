@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P17 - split a list into two parts.
   */
 
 object P17:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return two lists that split l at position */
   def split[A](n: Int, l: List[A]): (List[A], List[A]) =

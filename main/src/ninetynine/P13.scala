@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P13 - Run-length encoding of a list (direct (recursive) solution).
   */
 
 object P13:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return run-length encoded list */
   def encode[A](l: List[A]): List[(Int, A)] =

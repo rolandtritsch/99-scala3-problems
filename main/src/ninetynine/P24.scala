@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P24 - Lotto: Draw N different random numbers from the set 1..M.
   */
 
 object P24:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return n out of rangeSize numbers (as a list) */
   def lotto(n: Int, rangeSize: Int): List[Int] =

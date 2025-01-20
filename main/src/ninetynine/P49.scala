@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P49 - implement the gray code.
   */
 
 object P49:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the list of strings that represent the gray code for n */
   def gray(n: Int): List[String] =
@@ -14,7 +16,7 @@ object P49:
     val cache = scala.collection.mutable.Map[Int, List[String]]()
 
     def grayMemo(n: Int): List[String] =
-      if cache.contains(n) then return cache(n)
+      if cache.contains(n) then return cache(n) // scalafix:ok
 
       val result = n match
         case 1 => List("0", "1")

@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P16 - drop every Nth element from a list.
   */
 
 object P16:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** @return the list l without every Nth element */
   def drop[A](n: Int, l: List[A]): List[A] =

@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P50 - Huffman coding
   */
 
 object P50:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   case class Node[T](
       symbol: T,
@@ -51,7 +53,11 @@ object P50:
     // Generate codes by traversing the tree
     def generateCodes(node: Node[T], code: String = ""): Set[(T, String)] =
       if node.isLeaf then Set((node.symbol, code))
-      else generateCodes(node.left.get, code + "0") ++ generateCodes(node.right.get, code + "1")
+      else
+        // format: off
+        generateCodes(node.left.get, code + "0")
+        ++ generateCodes(node.right.get, code + "1") // scalafix:ok
+        // format: on
 
     frequencies.toList match
       case Nil           => Set()

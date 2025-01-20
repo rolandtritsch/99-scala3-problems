@@ -39,6 +39,7 @@ object main
     extends ScoverageTests
     with TestModule.Munit
     with ScalafmtModule
+    with ScalafixModule
   {
     def testCachedArgs = Seq("--exclude-tags=ignore")
     def ivyDeps = Agg(
@@ -47,6 +48,10 @@ object main
       ivy"org.typelevel::spire:0.18.0",
     )
 
+    def scalafixIvyDeps = Agg(
+      ivy"com.github.xuwei-k::scalafix-rules:0.5.1",
+    )
+    
     def scalafixConfig = T {
       Some(millSourcePath / ".." / ".." / ".scalafix.conf")
     }

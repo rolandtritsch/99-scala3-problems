@@ -1,10 +1,12 @@
 package ninetynine
 
+import com.typesafe.scalalogging.Logger
+
 /** P26 - generate the combinations of K distinct elements chosen from the N elements of a list.
   */
 
 object P26:
-  val logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
 
   /** Iterate over the list and remove one element at a time. Do this K times recursivly and keep
     * track on the elements that you take out. When you have recursed N times into it you need to
