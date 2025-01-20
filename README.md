@@ -14,7 +14,7 @@ The repo features ...
 - using [scalafmt][] to format the code
 - using Github Actions to CI/CD the solutions
 - using [scala-logging][] for logging
-- using [scalafix][] for liniting
+- using [scalafix][] for linting
 - using [scaladocs][] for documentation
 - using Github Actions to publish the [documentation][] as/on Github Pages
 - using [scoverage][] to generate a code-coverage report
