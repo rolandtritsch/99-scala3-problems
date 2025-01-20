@@ -1,10 +1,10 @@
 package ninetynine
 
-// scalafix: off
+// scalafix:off
 import scala.util.Random
 
 import com.typesafe.scalalogging.Logger
-// scalafix: on
+// scalafix:on
 
 /** P25 - generate a random permutation of the elements of a list.
   */

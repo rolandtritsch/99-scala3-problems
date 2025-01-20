@@ -1,10 +1,10 @@
 package ninetynine
 
-// scalafix: off
+// scalafix:off
 import scala.util.Random
 
 import com.typesafe.scalalogging.Logger
-// scalafix: on
+// scalafix:on
 
 /** P23 - extract a given number of randomly selected elements from a list.
   */
