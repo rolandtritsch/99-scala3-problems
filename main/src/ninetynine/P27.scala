@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
 /** P27 - group the elements of a set into disjoint subsets.
   */
 
 object P27:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return 3 disjoint subgroups of 1, 2 and 3 elements */
   def group3[A](l: List[A]): List[List[List[A]]] =

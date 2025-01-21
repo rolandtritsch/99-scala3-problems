@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P07 - flatten a (potentially nested) list of lists.
+/** P07 - flatten a nested list structure.
   */
 
 object P07:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return flattened list l */
   def flatten(l: Any): List[Any] =

@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P41 - A list of Goldbach compositions.
+/** P41 - a list of Goldbach compositions.
   */
 
 object P41:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return a list of Goldbach compositions */
   def goldbachList(r: Range): List[(Int, Int)] =

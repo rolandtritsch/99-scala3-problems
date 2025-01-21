@@ -1,15 +1,13 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P32 - Determine the greatest common divisor of two positive integer numbers.
+/** P32 - determine the greatest common divisor of two positive integer numbers.
   *
   * @note
   *   This implements the [[https://en.wikipedia.org/wiki/Euclidean_algorithm Euclidean algorithm]].
   */
 
 object P32:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return the greatest common divisor. */
   def gcd(a: Int, b: Int): Int =

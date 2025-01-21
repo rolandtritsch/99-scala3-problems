@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P01 - find the last element of the list.
+/** P01 - find last element of a list.
   */
 
 object P01:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** Do a recursive pattern match to find last element of a list.
     *
@@ -27,7 +25,7 @@ object P01:
     */
   @annotation.tailrec
   def last[A](l: List[A]): A =
-    require(l.nonEmpty, "!l.isEmpty")
+    require(l.nonEmpty, "l.nonEmpty")
     logger.debug(s"${l}")
 
     l match

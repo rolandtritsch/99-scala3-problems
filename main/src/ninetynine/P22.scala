@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
 /** P22 - create a list containing all integers within a given range.
   */
 
 object P22:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return a list with all integers from/to */
   def range(from: Int, to: Int): List[Int] =

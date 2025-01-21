@@ -1,8 +1,6 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P37 Calculate Euler's totient function phi(m) (improved).
+/** P37 - calculate Euler's totient function phi(m) (improved).
   *
   * Euler's so-called totient function phi(m) is defined as the number of positive integers r (1 <=
   * r < m) that are coprime to m. We let phi(1) = 1.
@@ -14,7 +12,7 @@ import com.typesafe.scalalogging.Logger
   */
 
 object P37:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return Euler's totient function phi(m) */
   def totient(m: Int): Int =

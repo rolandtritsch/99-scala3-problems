@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P49 - implement the gray code.
+/** P49 - Gray code.
   */
 
 object P49:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return the list of strings that represent the gray code for n */
   def gray(n: Int): List[String] =

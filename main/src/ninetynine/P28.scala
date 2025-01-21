@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P28 - Sorting a list of lists according to length of sublists.
+/** P28 - sorting a list of lists according to length of sublists.
   */
 
 object P28:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return l sorted by the length of the lists */
   def lsort[A](l: List[List[A]]): List[List[A]] =

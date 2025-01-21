@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P36 Determine the prime factorization of a given positive integer.
+/** P36 - determine the prime factors of a given positive integer (2).
   */
 
 object P36:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return a list of tuples containing prime factors and their multiplicity. */
   def primeFactorMultiplicity(n: Int): List[(Int, Int)] =

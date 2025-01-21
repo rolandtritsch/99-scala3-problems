@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P09 - pack dublicates into sublists.
+/** P09 - pack consecutive duplicates of list elements into sublists.
   */
 
 object P09:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return a list of lists (packing dups into lists) */
   def pack[A](l: List[A]): List[List[A]] =

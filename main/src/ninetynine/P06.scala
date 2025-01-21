@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P06 - find out if a word is a palindrom.
+/** P06 - find out if a list is a palindrome.
   */
 
 object P06:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return true, if word w is a palindrom */
   def isPalindrom(w: String): Boolean =

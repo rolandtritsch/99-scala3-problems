@@ -1,14 +1,12 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P19 - rotate a list N places to the left.
+/** P19 - rotate a list n places to the left.
   */
 
 object P19:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
-  /** @return the list l rotated N times to the left. */
+  /** @return the list l rotated n times to the left. */
   @annotation.tailrec
   def rotate[A](n: Int, l: List[A]): List[A] =
     logger.debug(s"${n} - ${l}")

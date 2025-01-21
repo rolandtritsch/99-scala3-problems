@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P20 - remove the Nth element from a list (index on 0)
+/** P20 - remove the kth element from a list.
   */
 
 object P20:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return the list l without the element on position n */
   def removeAt[A](n: Int, l: List[A]): (List[A], A) =

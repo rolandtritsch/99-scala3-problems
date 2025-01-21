@@ -1,7 +1,5 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
 /** P40 - Goldbach's conjecture.
   *
   * Goldbach’s conjecture says that every positive even number greater than 2 is the sum of two
@@ -11,7 +9,7 @@ import com.typesafe.scalalogging.Logger
   */
 
 object P40:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return a Goldbach composition */
   def goldbach(n: Int): (Int, Int) =

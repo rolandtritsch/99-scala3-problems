@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P33 - Determine whether two positive integer numbers are coprime.
+/** P33 - determine whether two positive integer numbers are coprime.
   */
 
 object P33:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return true if the two numbers are coprime. */
   def isCoprimeTo(a: Int, b: Int): Boolean =

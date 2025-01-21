@@ -1,12 +1,10 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
 /** P11 - modified run-length encoding.
   */
 
 object P11:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return run-length encoded list */
   def encode[A](l: List[A]): List[Any] =

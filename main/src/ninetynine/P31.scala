@@ -1,8 +1,6 @@
 package ninetynine
 
-import com.typesafe.scalalogging.Logger
-
-/** P31 - Determine whether a given integer number is prime.
+/** P31 - determine whether a given integer number is prime.
   *
   * @note
   *   This implements the
@@ -10,7 +8,7 @@ import com.typesafe.scalalogging.Logger
   */
 
 object P31:
-  val logger: Logger = com.typesafe.scalalogging.Logger(this.getClass.getName)
+  val logger = com.typesafe.scalalogging.Logger(getClass)
 
   /** @return true, if the number is prime. */
   def isPrime(n: Int): Boolean =
