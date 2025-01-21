@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P46:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   def and(a: Boolean, b: Boolean): Boolean = a && b
   def or(a: Boolean, b: Boolean): Boolean = a || b

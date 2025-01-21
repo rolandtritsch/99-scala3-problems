@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P41:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return a list of Goldbach compositions */
   def goldbachList(r: Range): List[(Int, Int)] =

@@ -8,7 +8,7 @@ package ninetynine
   */
 
 object P31:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return true, if the number is prime. */
   def isPrime(n: Int): Boolean =

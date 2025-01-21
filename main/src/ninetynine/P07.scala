@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P07:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return flattened list l */
   def flatten(l: Any): List[Any] =

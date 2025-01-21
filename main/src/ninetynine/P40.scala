@@ -9,7 +9,7 @@ package ninetynine
   */
 
 object P40:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return a Goldbach composition */
   def goldbach(n: Int): (Int, Int) =

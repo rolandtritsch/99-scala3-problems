@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P17:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return two lists that split l at position */
   def split[A](n: Int, l: List[A]): (List[A], List[A]) =

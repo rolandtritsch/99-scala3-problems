@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P50:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   case class Node[T](
       symbol: T,

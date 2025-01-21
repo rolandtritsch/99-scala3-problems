@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P05:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return the reverse of the list l */
   def reverse[A](l: List[A]): List[A] =

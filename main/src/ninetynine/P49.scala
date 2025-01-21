@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P49:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return the list of strings that represent the gray code for n */
   def gray(n: Int): List[String] =

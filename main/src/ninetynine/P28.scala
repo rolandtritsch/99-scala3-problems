@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P28:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return l sorted by the length of the lists */
   def lsort[A](l: List[List[A]]): List[List[A]] =

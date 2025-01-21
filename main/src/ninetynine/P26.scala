@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P26:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** Iterate over the list and remove one element at a time. Do this k times recursivly and keep
     * track on the elements that you take out. When you have recursed n times into it you need to

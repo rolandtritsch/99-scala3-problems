@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P08:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return l with no duplicates */
   def compress[A](l: List[A]): List[A] =

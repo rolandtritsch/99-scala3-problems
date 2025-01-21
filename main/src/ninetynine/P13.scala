@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P13:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return run-length encoded list */
   def encode[A](l: List[A]): List[(Int, A)] =

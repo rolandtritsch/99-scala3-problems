@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P20:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return the list l without the element on position n */
   def removeAt[A](n: Int, l: List[A]): (List[A], A) =

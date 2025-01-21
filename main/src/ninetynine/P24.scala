@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P24:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return n out of rangeSize numbers (as a list) */
   def lotto(n: Int, rangeSize: Int): List[Int] =

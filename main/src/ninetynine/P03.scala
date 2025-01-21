@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P03:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return the Nth element of the list l */
   @annotation.tailrec

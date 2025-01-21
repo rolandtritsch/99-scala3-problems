@@ -6,7 +6,7 @@ import scala.util.Random
   */
 
 object P25:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return a random shuffle of list l */
   def randomPermute[A](l: List[A]): List[A] =

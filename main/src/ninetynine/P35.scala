@@ -4,7 +4,7 @@ package ninetynine
   */
 
 object P35:
-  val logger = com.typesafe.scalalogging.Logger(getClass)
+  val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   /** @return a flat list containing the prime factors in ascending order. */
   def primeFactors(n: Int): List[Int] =
