@@ -19,13 +19,12 @@ object P55:
       if n == 0 then List(End)
       else if n == 1 then List(Node(value, End, End))
       else
-          for
-            leftNodes <- 0 until n
-            rightNodes = n - 1 - leftNodes
-            leftTree <- cBalanced(leftNodes, value)
-            rightTree <- cBalanced(rightNodes, value)
-          yield Node(value, leftTree, rightTree)
-        .toList
+        (for
+          leftNodes <- 0 until n
+          rightNodes = n - 1 - leftNodes
+          leftTree <- cBalanced(leftNodes, value)
+          rightTree <- cBalanced(rightNodes, value)
+        yield Node(value, leftTree, rightTree)).toList
       end if
     end cBalanced
 
