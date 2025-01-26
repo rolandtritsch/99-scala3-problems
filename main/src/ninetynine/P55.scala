@@ -1,13 +1,13 @@
 package ninetynine
 
-/** P55 - Generate complete binary tree.
+/** P55 - Construct completely balanced binary trees.
   */
 
 object P55:
   val logger = com.typesafe.scalalogging.Logger(getClass) // scalafix:ok
 
   sealed abstract class Tree[+T]
-  case class Node[+T](value: T, left: Tree[T], right: Tree[T]) extends Tree[T]
+  case class Node[+T](value: T, left: Tree[T] = End, right: Tree[T] = End) extends Tree[T]
   case object End extends Tree[Nothing]
 
   object Tree:
