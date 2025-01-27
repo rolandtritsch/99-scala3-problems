@@ -2,7 +2,7 @@ package ninetynine
 
 class P31Test extends munit.ScalaCheckSuite:
 
-  test("P31 - isPrime") {
+  test("P31 - isPrime"):
     assert(P31.isPrime(2))
     assert(P31.isPrime(3))
     assert(!P31.isPrime(4))
@@ -18,6 +18,5 @@ class P31Test extends munit.ScalaCheckSuite:
     assert(P31.isPrime(19))
     assert(!P31.isPrime(20))
     assert(P31.isPrime(23))
-  }
 
 end P31Test

@@ -2,7 +2,7 @@ package ninetynine
 
 class P28Test extends munit.ScalaCheckSuite:
 
-  test("P28 - lsort") {
+  test("P28 - lsort"):
     val input = List(
       List('a', 'b', 'c'),
       List('d', 'e'),
@@ -21,10 +21,10 @@ class P28Test extends munit.ScalaCheckSuite:
       List('f', 'g', 'h'),
       List('i', 'j', 'k', 'l'),
     )
-    assertEquals(P28.lsort(input), expected)
-  }
 
-  test("P28 - lsortFreq - Char") {
+    assertEquals(P28.lsort(input), expected)
+
+  test("P28 - lsortFreq - Char"):
     val input = List(
       List('a', 'b', 'c'),
       List('d', 'e'),
@@ -43,7 +43,7 @@ class P28Test extends munit.ScalaCheckSuite:
       List('d', 'e'),
       List('m', 'n'),
     )
+    
     assertEquals(P28.lsortFreq(input), expected)
-  }
 
 end P28Test

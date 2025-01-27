@@ -5,27 +5,21 @@ import org.scalacheck.Prop.*
 class P50Test extends munit.ScalaCheckSuite:
   test("P50 - basic")(assertEquals(P50.huffman(Set(('a', 1))), Set(('a', ""))))
 
-  test("P50 - same frequency") {
+  test("P50 - same frequency"):
     val frequencies = Set(('a', 1), ('b', 1), ('c', 1), ('d', 1))
     val codes = P50.huffman(frequencies)
 
-    // All symbols should be present
     assertEquals(codes.map(_._1), Set('a', 'b', 'c', 'd'))
-
-    // All codes should have length 2 (balanced tree for equal frequencies)
     assert(codes.forall(_._2.length == 2), "All codes should have length 2")
-
-    // All codes should be different
     assertEquals(codes.map(_._2).size, 4, "All codes should be unique")
-  }
 
-  test("P50 - same frequency - text") {
+  test("P50 - same frequency - text"):
     val obtained = P50.huffman("abcd")
     val expected = Set(('a', "00"), ('b', "01"), ('c', "10"), ('d', "11"))
-    assertEquals(obtained, expected)
-  }
 
-  test("P50 - test THE test string") {
+    assertEquals(obtained, expected)
+
+  test("P50 - test THE test string"):
     val obtained = P50.huffman("this is an example of a huffman tree")
     val expected = Set(
       (' ', "111"),
@@ -45,15 +39,13 @@ class P50Test extends munit.ScalaCheckSuite:
       ('u', "11000"),
       ('x', "11001"),
     )
-    assertEquals(obtained, expected)
-  }
 
-  property("P50 - reverse text gives same codes") {
-    forAll { (text: String) =>
+    assertEquals(obtained, expected)
+
+  property("P50 - reverse text gives same codes"):
+    forAll: (text: String) =>
       val obtained = P50.huffman(text)
       val expected = P50.huffman(text.reverse)
       assertEquals(obtained, expected)
-    }
-  }
 
 end P50Test
