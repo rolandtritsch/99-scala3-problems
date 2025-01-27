@@ -11,7 +11,9 @@ object P55:
   case object End extends Tree[Nothing]
 
   import scala.math.Ordered.orderingToOrdered
+
   extension [T: Ordering](tree: Tree[T])
+
     def addValue(value: T): Tree[T] = tree match
       case End => Node(value, End, End)
       case Node(v, left, right) =>
@@ -19,6 +21,9 @@ object P55:
         else if value < v then Node(v, left.addValue(value), right)
         else Node(v, left, right.addValue(value))
     end addValue
+
+  end extension
+
   object Tree:
 
     /** @return
@@ -40,9 +45,11 @@ object P55:
     /** @return
       *   the Tree from the given List.
       */
-    def fromList[T: Ordering](list: List[T]): Tree[T] =
+    // format: off
+    def fromList[T: Ordering](list: List[T]): Tree[T] = 
       list.foldLeft(End: Tree[T])((tree, elem) => tree.addValue(elem))
     end fromList
+    // format: on
 
   end Tree
 
