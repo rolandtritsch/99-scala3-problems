@@ -56,4 +56,20 @@ object main
       Some(millSourcePath / ".." / ".." / ".scalafix.conf")
     }
   }
+  object migrate extends ScalaModule {
+    def scalaVersion = main.scalaVersion
+
+    def scalacOptions = Seq(
+      "-rewrite",
+      "-indent",
+    )
+
+    def sources = T {
+      main.sources() ++ test.sources()
+    }
+
+    def ivyDeps = T {
+      main.ivyDeps() ++ test.ivyDeps()
+    }
+  }
 }
