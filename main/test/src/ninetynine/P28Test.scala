@@ -43,7 +43,7 @@ class P28Test extends munit.ScalaCheckSuite:
       List('d', 'e'),
       List('m', 'n'),
     )
-    
+
     assertEquals(P28.lsortFreq(input), expected)
 
 end P28Test

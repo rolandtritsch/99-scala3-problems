@@ -48,7 +48,7 @@ class P46Test extends munit.ScalaCheckSuite:
     val result = P46.table(P46.equ)
     val expected =
       List((true, true, true), (true, false, false), (false, true, false), (false, false, true))
-      
+
     assertEquals(result, expected)
 
 end P46Test

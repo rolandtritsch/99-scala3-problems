@@ -13,7 +13,7 @@ class P26Test extends munit.ScalaCheckSuite:
       List('b', 'd'),
       List('c', 'd'),
     )
-    
+
     assertEquals(result.toSet, expected.toSet)
 
 end P26Test

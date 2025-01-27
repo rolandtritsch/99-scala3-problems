@@ -6,7 +6,7 @@ class P38Test extends munit.ScalaCheckSuite:
     val n = 10090
     val phi1 = P34.totient(n)
     val phi2 = P37.totient(n)
-    
+
     assertEquals(phi1, phi2)
 
 end P38Test
