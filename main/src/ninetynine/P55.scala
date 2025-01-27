@@ -10,6 +10,15 @@ object P55:
   case class Node[+T](value: T, left: Tree[T] = End, right: Tree[T] = End) extends Tree[T]
   case object End extends Tree[Nothing]
 
+  import scala.math.Ordered.orderingToOrdered
+  extension [T: Ordering](tree: Tree[T])
+    def addValue(value: T): Tree[T] = tree match
+      case End => Node(value, End, End)
+      case Node(v, left, right) =>
+        if value == v then tree
+        else if value < v then Node(v, left.addValue(value), right)
+        else Node(v, left, right.addValue(value))
+    end addValue
   object Tree:
 
     /** @return
@@ -27,6 +36,13 @@ object P55:
         yield Node(value, leftTree, rightTree)).toList
       end if
     end cBalanced
+
+    /** @return
+      *   the Tree from the given List.
+      */
+    def fromList[T: Ordering](list: List[T]): Tree[T] =
+      list.foldLeft(End: Tree[T])((tree, elem) => tree.addValue(elem))
+    end fromList
 
   end Tree
 
