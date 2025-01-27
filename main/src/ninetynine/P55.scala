@@ -46,7 +46,7 @@ object P55:
       *   the Tree from the given List.
       */
     // format: off
-    def fromList[T: Ordering](list: List[T]): Tree[T] = 
+    def fromList[T: Ordering](list: List[T]): Tree[T] =
       list.foldLeft(End: Tree[T])((tree, elem) => tree.addValue(elem))
     end fromList
     // format: on
