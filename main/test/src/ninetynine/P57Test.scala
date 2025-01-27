@@ -7,3 +7,5 @@ class P57Test extends munit.ScalaCheckSuite:
     val tree = Tree.fromList(List(3, 2, 5, 7, 1))
     val expected = Node(3, Node(2, Node(1, End, End), End), Node(5, End, Node(7, End, End)))
     assertEquals(tree, expected)
+
+end P57Test
