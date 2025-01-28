@@ -14,6 +14,9 @@ object P55:
 
   extension [T: Ordering](tree: Tree[T])
 
+    /** @return
+      *   a new Tree with the given value added.
+      */
     def addValue(value: T): Tree[T] = tree match
       case End => Node(value, End, End)
       case Node(v, left, right) =>
