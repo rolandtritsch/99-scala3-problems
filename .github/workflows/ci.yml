@@ -53,11 +53,14 @@ jobs:
         if: github.ref == 'refs/heads/trunk'
         uses: actions/configure-pages@v3
 
+      - name: List files for debugging
+        run: ls -R ./out/main/docJar.dest/javadoc
+
       - name: Upload artifact
         if: github.ref == 'refs/heads/trunk'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./out/main/docJar.dest/javadoc"
+          path: ./out/main/docJar.dest/javadoc
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/trunk'
