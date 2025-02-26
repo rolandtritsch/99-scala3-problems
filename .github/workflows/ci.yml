@@ -44,7 +44,7 @@ jobs:
         run: ./mill main.docJar
 
       - name: Generate html scoverage report
-        run: | 
+        run: |
           ./mill main.__.scoverage.htmlReport
           mv ./out/main/scoverage/htmlReport.dest \
              ./out/main/docJar.dest/javadoc/scoverage
