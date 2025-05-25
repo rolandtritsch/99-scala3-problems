@@ -2,8 +2,8 @@ package ninetynine
 
 /** P38 - Compare the two methods of calculating Euler's totient function.
   *
-  * Use the solutions of problems P34 and P37 to compare the algorithms.
-  * Try to calculate phi(10090) as an example.
+  * Use the solutions of problems P34 and P37 to compare the algorithms. Try to calculate phi(10090)
+  * as an example.
   */
 
 object P38:
@@ -29,6 +29,8 @@ object P38:
     val duration2 = System.nanoTime() - startTime2
 
     ((phi1, duration1), (phi2, duration2))
+
+  end compareTotient
 
   /** Calculate how much faster the P37 implementation is compared to P34
     *
