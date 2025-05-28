@@ -1,6 +1,8 @@
+# Project Rules
+
 For this project the following rules apply:
 
 1. My build system is mill. To run the build tool you need to use './mill'.
-2. In this project we try to solve the 99 scala problems - https://aperiodic.net/pip/scala/s-99
-3. We are using Scala3 and the Scala3 indention style - https://docs.scala-lang.org/style/indentation.html
+2. In this project we try to solve the 99 scala problems - [Scala S-99](https://aperiodic.net/pip/scala/s-99)
+3. We are using Scala3 and the Scala3 indention style - [Scala Indentation Guide](https://docs.scala-lang.org/style/indentation.html)
 4. Please generate idiomatic Scala3 code. Avoid while-loops and for-comprehensions.
