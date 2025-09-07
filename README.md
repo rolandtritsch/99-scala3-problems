@@ -4,7 +4,7 @@
 
 To make this work you need to ...
 
-- run `./mill --watch test --exclude-tags=ignore`
+- run `./mill --watch main.test --exclude-tags=ignore`
 
 The repo features ...
 
